@@ -10,14 +10,8 @@ var trans_dir = ""
 func _init(modLoader = ModLoader):
 	ModLoaderUtils.log_info("Init", MINCEDMEATMOLE_MOREUI_LOG)
 	dir = modLoader.UNPACKED_DIR + MINCEDMEATMOLE_MOREUI_DIR
-	ext_dir = dir + "extensions/"
-	trans_dir = dir + "translations/"
-
-	# Add extensions
-	modLoader.install_script_extension(ext_dir + "main.gd")
-
-	# Add translations
-	modLoader.add_translation_from_resource(trans_dir + "modname_text.en.translation")
+	
+	modLoader.install_script_extension(dir + "extensions/ui/hud/more_ui.gd")
 
 
 func _ready():
