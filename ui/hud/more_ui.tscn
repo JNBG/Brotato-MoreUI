@@ -1,9 +1,623 @@
-[gd_scene format=2]
+[gd_scene load_steps=18 format=2]
 
-[node name="Node2D" type="Node2D"]
+[ext_resource path="res://mods-unpacked/MincedMeatMole-MoreUI/resources/fonts/actual/more_ui_font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://items/stats/max_hp.png" type="Texture" id=2]
+[ext_resource path="res://items/stats/percent_damage.png" type="Texture" id=3]
+[ext_resource path="res://items/stats/hp_regeneration.png" type="Texture" id=4]
+[ext_resource path="res://items/stats/lifesteal.png" type="Texture" id=5]
+[ext_resource path="res://items/stats/elemental_damage.png" type="Texture" id=6]
+[ext_resource path="res://items/stats/ranged_damage.png" type="Texture" id=7]
+[ext_resource path="res://items/stats/attack_speed.png" type="Texture" id=8]
+[ext_resource path="res://items/stats/melee_damage.png" type="Texture" id=9]
+[ext_resource path="res://items/stats/crit_chance.png" type="Texture" id=10]
+[ext_resource path="res://items/stats/armor.png" type="Texture" id=11]
+[ext_resource path="res://items/stats/range.png" type="Texture" id=12]
+[ext_resource path="res://items/stats/engineering.png" type="Texture" id=13]
+[ext_resource path="res://items/stats/speed.png" type="Texture" id=14]
+[ext_resource path="res://items/stats/luck.png" type="Texture" id=15]
+[ext_resource path="res://items/stats/dodge.png" type="Texture" id=16]
+[ext_resource path="res://items/stats/harvesting.png" type="Texture" id=17]
 
-[node name="MoreUI" type="HBoxContainer" parent="."]
-anchor_left = 1.0
-anchor_top = 10.0
+[node name="MoreUIPlaceHorizontal" type="HBoxContainer"]
+margin_top = 1080.0
+margin_right = 700.0
+margin_bottom = 1780.0
+rect_min_size = Vector2( 64, 64 )
+mouse_filter = 2
+
+[node name="MoreUIPlaceVertical" type="VBoxContainer" parent="."]
+margin_right = 40.0
+margin_bottom = 700.0
+mouse_filter = 2
+alignment = 2
+
+[node name="MaxHPControl" type="Control" parent="MoreUIPlaceVertical"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 40, 40 )
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/MaxHPControl"]
 anchor_right = 1.0
-anchor_bottom = 10.0
+anchor_bottom = 0.984
+margin_bottom = 2.048
+
+[node name="TextureRect" type="TextureRect" parent="MoreUIPlaceVertical/MaxHPControl/AspectRatioContainer"]
+margin_top = 0.704
+margin_right = 40.0
+margin_bottom = 40.704
+rect_pivot_offset = Vector2( 64, 64 )
+texture = ExtResource( 2 )
+expand = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/MaxHPControl"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 50.0
+margin_top = 4.0
+margin_right = 180.0
+margin_bottom = 3.0
+alignment = 1
+
+[node name="More_UI_MaxHP" type="RichTextLabel" parent="MoreUIPlaceVertical/MaxHPControl/VBoxContainer"]
+unique_name_in_owner = true
+margin_top = 8.0
+margin_right = 170.0
+margin_bottom = 30.0
+custom_fonts/normal_font = ExtResource( 1 )
+bbcode_enabled = true
+fit_content_height = true
+
+[node name="HPRegenControl" type="Control" parent="MoreUIPlaceVertical"]
+margin_top = 44.0
+margin_right = 40.0
+margin_bottom = 84.0
+rect_min_size = Vector2( 40, 40 )
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/HPRegenControl"]
+anchor_right = 1.0
+anchor_bottom = 0.984
+margin_bottom = 2.048
+
+[node name="TextureRect" type="TextureRect" parent="MoreUIPlaceVertical/HPRegenControl/AspectRatioContainer"]
+margin_top = 0.704
+margin_right = 40.0
+margin_bottom = 40.704
+rect_pivot_offset = Vector2( 64, 64 )
+texture = ExtResource( 4 )
+expand = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/HPRegenControl"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 50.0
+margin_top = 4.0
+margin_right = 180.0
+margin_bottom = 3.0
+alignment = 1
+
+[node name="More_UI_HP_Regen" type="RichTextLabel" parent="MoreUIPlaceVertical/HPRegenControl/VBoxContainer"]
+unique_name_in_owner = true
+margin_top = 8.0
+margin_right = 170.0
+margin_bottom = 30.0
+custom_fonts/normal_font = ExtResource( 1 )
+bbcode_enabled = true
+fit_content_height = true
+
+[node name="LifeStealControl" type="Control" parent="MoreUIPlaceVertical"]
+margin_top = 88.0
+margin_right = 40.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 40, 40 )
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/LifeStealControl"]
+anchor_right = 1.0
+anchor_bottom = 0.984
+margin_bottom = 2.048
+
+[node name="TextureRect" type="TextureRect" parent="MoreUIPlaceVertical/LifeStealControl/AspectRatioContainer"]
+margin_top = 0.704
+margin_right = 40.0
+margin_bottom = 40.704
+rect_pivot_offset = Vector2( 64, 64 )
+texture = ExtResource( 5 )
+expand = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/LifeStealControl"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 50.0
+margin_top = 4.0
+margin_right = 180.0
+margin_bottom = 3.0
+alignment = 1
+
+[node name="More_UI_LifeSteal" type="RichTextLabel" parent="MoreUIPlaceVertical/LifeStealControl/VBoxContainer"]
+unique_name_in_owner = true
+margin_top = 8.0
+margin_right = 170.0
+margin_bottom = 30.0
+custom_fonts/normal_font = ExtResource( 1 )
+bbcode_enabled = true
+fit_content_height = true
+
+[node name="DamageControl" type="Control" parent="MoreUIPlaceVertical"]
+margin_top = 132.0
+margin_right = 40.0
+margin_bottom = 172.0
+rect_min_size = Vector2( 40, 40 )
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/DamageControl"]
+anchor_right = 1.0
+anchor_bottom = 0.984
+margin_bottom = 2.048
+
+[node name="TextureRect" type="TextureRect" parent="MoreUIPlaceVertical/DamageControl/AspectRatioContainer"]
+margin_top = 0.704
+margin_right = 40.0
+margin_bottom = 40.704
+rect_pivot_offset = Vector2( 64, 64 )
+texture = ExtResource( 3 )
+expand = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/DamageControl"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 50.0
+margin_top = 4.0
+margin_right = 180.0
+margin_bottom = 3.0
+alignment = 1
+
+[node name="More_UI_Damage" type="RichTextLabel" parent="MoreUIPlaceVertical/DamageControl/VBoxContainer"]
+unique_name_in_owner = true
+margin_top = 8.0
+margin_right = 170.0
+margin_bottom = 30.0
+custom_fonts/normal_font = ExtResource( 1 )
+bbcode_enabled = true
+fit_content_height = true
+
+[node name="MeleeDamageControl" type="Control" parent="MoreUIPlaceVertical"]
+margin_top = 176.0
+margin_right = 40.0
+margin_bottom = 216.0
+rect_min_size = Vector2( 40, 40 )
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/MeleeDamageControl"]
+anchor_right = 1.0
+anchor_bottom = 0.984
+margin_bottom = 2.048
+
+[node name="TextureRect" type="TextureRect" parent="MoreUIPlaceVertical/MeleeDamageControl/AspectRatioContainer"]
+margin_top = 0.704
+margin_right = 40.0
+margin_bottom = 40.704
+rect_pivot_offset = Vector2( 64, 64 )
+texture = ExtResource( 9 )
+expand = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/MeleeDamageControl"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 50.0
+margin_top = 4.0
+margin_right = 180.0
+margin_bottom = 3.0
+alignment = 1
+
+[node name="More_UI_MeleeDamage" type="RichTextLabel" parent="MoreUIPlaceVertical/MeleeDamageControl/VBoxContainer"]
+unique_name_in_owner = true
+margin_top = 8.0
+margin_right = 170.0
+margin_bottom = 30.0
+custom_fonts/normal_font = ExtResource( 1 )
+bbcode_enabled = true
+fit_content_height = true
+
+[node name="RangedDamageControl" type="Control" parent="MoreUIPlaceVertical"]
+margin_top = 220.0
+margin_right = 40.0
+margin_bottom = 260.0
+rect_min_size = Vector2( 40, 40 )
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/RangedDamageControl"]
+anchor_right = 1.0
+anchor_bottom = 0.984
+margin_bottom = 2.048
+
+[node name="TextureRect" type="TextureRect" parent="MoreUIPlaceVertical/RangedDamageControl/AspectRatioContainer"]
+margin_top = 0.704
+margin_right = 40.0
+margin_bottom = 40.704
+rect_pivot_offset = Vector2( 64, 64 )
+texture = ExtResource( 7 )
+expand = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/RangedDamageControl"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 50.0
+margin_top = 4.0
+margin_right = 180.0
+margin_bottom = 3.0
+alignment = 1
+
+[node name="More_UI_RangedDamage" type="RichTextLabel" parent="MoreUIPlaceVertical/RangedDamageControl/VBoxContainer"]
+unique_name_in_owner = true
+margin_top = 8.0
+margin_right = 170.0
+margin_bottom = 30.0
+custom_fonts/normal_font = ExtResource( 1 )
+bbcode_enabled = true
+fit_content_height = true
+
+[node name="ElementalDamageControl" type="Control" parent="MoreUIPlaceVertical"]
+margin_top = 264.0
+margin_right = 40.0
+margin_bottom = 304.0
+rect_min_size = Vector2( 40, 40 )
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/ElementalDamageControl"]
+anchor_right = 1.0
+anchor_bottom = 0.984
+margin_bottom = 2.048
+
+[node name="TextureRect" type="TextureRect" parent="MoreUIPlaceVertical/ElementalDamageControl/AspectRatioContainer"]
+margin_top = 0.704
+margin_right = 40.0
+margin_bottom = 40.704
+rect_pivot_offset = Vector2( 64, 64 )
+texture = ExtResource( 6 )
+expand = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/ElementalDamageControl"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 50.0
+margin_top = 4.0
+margin_right = 180.0
+margin_bottom = 3.0
+alignment = 1
+
+[node name="More_UI_ElementalDamage" type="RichTextLabel" parent="MoreUIPlaceVertical/ElementalDamageControl/VBoxContainer"]
+unique_name_in_owner = true
+margin_top = 8.0
+margin_right = 170.0
+margin_bottom = 30.0
+custom_fonts/normal_font = ExtResource( 1 )
+bbcode_enabled = true
+fit_content_height = true
+
+[node name="AttackSpeedControl" type="Control" parent="MoreUIPlaceVertical"]
+margin_top = 308.0
+margin_right = 40.0
+margin_bottom = 348.0
+rect_min_size = Vector2( 40, 40 )
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/AttackSpeedControl"]
+anchor_right = 1.0
+anchor_bottom = 0.984
+margin_bottom = 2.048
+
+[node name="TextureRect" type="TextureRect" parent="MoreUIPlaceVertical/AttackSpeedControl/AspectRatioContainer"]
+margin_top = 0.704
+margin_right = 40.0
+margin_bottom = 40.704
+rect_pivot_offset = Vector2( 64, 64 )
+texture = ExtResource( 8 )
+expand = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/AttackSpeedControl"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 50.0
+margin_top = 4.0
+margin_right = 180.0
+margin_bottom = 3.0
+alignment = 1
+
+[node name="More_UI_AttackSpeed" type="RichTextLabel" parent="MoreUIPlaceVertical/AttackSpeedControl/VBoxContainer"]
+unique_name_in_owner = true
+margin_top = 8.0
+margin_right = 170.0
+margin_bottom = 30.0
+custom_fonts/normal_font = ExtResource( 1 )
+bbcode_enabled = true
+fit_content_height = true
+
+[node name="CritChanceControl" type="Control" parent="MoreUIPlaceVertical"]
+margin_top = 352.0
+margin_right = 40.0
+margin_bottom = 392.0
+rect_min_size = Vector2( 40, 40 )
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/CritChanceControl"]
+anchor_right = 1.0
+anchor_bottom = 0.984
+margin_bottom = 2.048
+
+[node name="TextureRect" type="TextureRect" parent="MoreUIPlaceVertical/CritChanceControl/AspectRatioContainer"]
+margin_top = 0.704
+margin_right = 40.0
+margin_bottom = 40.704
+rect_pivot_offset = Vector2( 64, 64 )
+texture = ExtResource( 10 )
+expand = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/CritChanceControl"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 50.0
+margin_top = 4.0
+margin_right = 180.0
+margin_bottom = 3.0
+alignment = 1
+
+[node name="More_UI_CritChance" type="RichTextLabel" parent="MoreUIPlaceVertical/CritChanceControl/VBoxContainer"]
+unique_name_in_owner = true
+margin_top = 8.0
+margin_right = 170.0
+margin_bottom = 30.0
+custom_fonts/normal_font = ExtResource( 1 )
+bbcode_enabled = true
+fit_content_height = true
+
+[node name="EngineeringControl" type="Control" parent="MoreUIPlaceVertical"]
+margin_top = 396.0
+margin_right = 40.0
+margin_bottom = 436.0
+rect_min_size = Vector2( 40, 40 )
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/EngineeringControl"]
+anchor_right = 1.0
+anchor_bottom = 0.984
+margin_bottom = 2.048
+
+[node name="TextureRect" type="TextureRect" parent="MoreUIPlaceVertical/EngineeringControl/AspectRatioContainer"]
+margin_top = 0.704
+margin_right = 40.0
+margin_bottom = 40.704
+rect_pivot_offset = Vector2( 64, 64 )
+texture = ExtResource( 13 )
+expand = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/EngineeringControl"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 50.0
+margin_top = 4.0
+margin_right = 180.0
+margin_bottom = 3.0
+alignment = 1
+
+[node name="More_UI_Engineering" type="RichTextLabel" parent="MoreUIPlaceVertical/EngineeringControl/VBoxContainer"]
+unique_name_in_owner = true
+margin_top = 8.0
+margin_right = 170.0
+margin_bottom = 30.0
+custom_fonts/normal_font = ExtResource( 1 )
+bbcode_enabled = true
+fit_content_height = true
+
+[node name="RangeControl" type="Control" parent="MoreUIPlaceVertical"]
+margin_top = 440.0
+margin_right = 40.0
+margin_bottom = 480.0
+rect_min_size = Vector2( 40, 40 )
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/RangeControl"]
+anchor_right = 1.0
+anchor_bottom = 0.984
+margin_bottom = 2.048
+
+[node name="TextureRect" type="TextureRect" parent="MoreUIPlaceVertical/RangeControl/AspectRatioContainer"]
+margin_top = 0.704
+margin_right = 40.0
+margin_bottom = 40.704
+rect_pivot_offset = Vector2( 64, 64 )
+texture = ExtResource( 12 )
+expand = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/RangeControl"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 50.0
+margin_top = 4.0
+margin_right = 180.0
+margin_bottom = 3.0
+alignment = 1
+
+[node name="More_UI_Range" type="RichTextLabel" parent="MoreUIPlaceVertical/RangeControl/VBoxContainer"]
+unique_name_in_owner = true
+margin_top = 8.0
+margin_right = 170.0
+margin_bottom = 30.0
+custom_fonts/normal_font = ExtResource( 1 )
+bbcode_enabled = true
+fit_content_height = true
+
+[node name="ArmorControl" type="Control" parent="MoreUIPlaceVertical"]
+margin_top = 484.0
+margin_right = 40.0
+margin_bottom = 524.0
+rect_min_size = Vector2( 40, 40 )
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/ArmorControl"]
+anchor_right = 1.0
+anchor_bottom = 0.984
+margin_bottom = 2.048
+
+[node name="TextureRect" type="TextureRect" parent="MoreUIPlaceVertical/ArmorControl/AspectRatioContainer"]
+margin_top = 0.704
+margin_right = 40.0
+margin_bottom = 40.704
+rect_pivot_offset = Vector2( 64, 64 )
+texture = ExtResource( 11 )
+expand = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/ArmorControl"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 50.0
+margin_top = 4.0
+margin_right = 180.0
+margin_bottom = 3.0
+alignment = 1
+
+[node name="More_UI_Armor" type="RichTextLabel" parent="MoreUIPlaceVertical/ArmorControl/VBoxContainer"]
+unique_name_in_owner = true
+margin_top = 8.0
+margin_right = 170.0
+margin_bottom = 30.0
+custom_fonts/normal_font = ExtResource( 1 )
+bbcode_enabled = true
+fit_content_height = true
+
+[node name="DodgeControl" type="Control" parent="MoreUIPlaceVertical"]
+margin_top = 528.0
+margin_right = 40.0
+margin_bottom = 568.0
+rect_min_size = Vector2( 40, 40 )
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/DodgeControl"]
+anchor_right = 1.0
+anchor_bottom = 0.984
+margin_bottom = 2.048
+
+[node name="TextureRect" type="TextureRect" parent="MoreUIPlaceVertical/DodgeControl/AspectRatioContainer"]
+margin_top = 0.704
+margin_right = 40.0
+margin_bottom = 40.704
+rect_pivot_offset = Vector2( 64, 64 )
+texture = ExtResource( 16 )
+expand = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/DodgeControl"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 50.0
+margin_top = 4.0
+margin_right = 180.0
+margin_bottom = 3.0
+alignment = 1
+
+[node name="More_UI_Dodge" type="RichTextLabel" parent="MoreUIPlaceVertical/DodgeControl/VBoxContainer"]
+unique_name_in_owner = true
+margin_top = 8.0
+margin_right = 170.0
+margin_bottom = 30.0
+custom_fonts/normal_font = ExtResource( 1 )
+bbcode_enabled = true
+fit_content_height = true
+
+[node name="SpeedControl" type="Control" parent="MoreUIPlaceVertical"]
+margin_top = 572.0
+margin_right = 40.0
+margin_bottom = 612.0
+rect_min_size = Vector2( 40, 40 )
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/SpeedControl"]
+anchor_right = 1.0
+anchor_bottom = 0.984
+margin_bottom = 2.048
+
+[node name="TextureRect" type="TextureRect" parent="MoreUIPlaceVertical/SpeedControl/AspectRatioContainer"]
+margin_top = 0.704
+margin_right = 40.0
+margin_bottom = 40.704
+rect_pivot_offset = Vector2( 64, 64 )
+texture = ExtResource( 14 )
+expand = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/SpeedControl"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 50.0
+margin_top = 4.0
+margin_right = 180.0
+margin_bottom = 3.0
+alignment = 1
+
+[node name="More_UI_Speed" type="RichTextLabel" parent="MoreUIPlaceVertical/SpeedControl/VBoxContainer"]
+unique_name_in_owner = true
+margin_top = 8.0
+margin_right = 170.0
+margin_bottom = 30.0
+custom_fonts/normal_font = ExtResource( 1 )
+bbcode_enabled = true
+fit_content_height = true
+
+[node name="LuckControl" type="Control" parent="MoreUIPlaceVertical"]
+margin_top = 616.0
+margin_right = 40.0
+margin_bottom = 656.0
+rect_min_size = Vector2( 40, 40 )
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/LuckControl"]
+anchor_right = 1.0
+anchor_bottom = 0.984
+margin_bottom = 2.048
+
+[node name="TextureRect" type="TextureRect" parent="MoreUIPlaceVertical/LuckControl/AspectRatioContainer"]
+margin_top = 0.704
+margin_right = 40.0
+margin_bottom = 40.704
+rect_pivot_offset = Vector2( 64, 64 )
+texture = ExtResource( 15 )
+expand = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/LuckControl"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 50.0
+margin_top = 4.0
+margin_right = 180.0
+margin_bottom = 3.0
+alignment = 1
+
+[node name="More_UI_Luck" type="RichTextLabel" parent="MoreUIPlaceVertical/LuckControl/VBoxContainer"]
+unique_name_in_owner = true
+margin_top = 8.0
+margin_right = 170.0
+margin_bottom = 30.0
+custom_fonts/normal_font = ExtResource( 1 )
+bbcode_enabled = true
+fit_content_height = true
+
+[node name="HarvestingControl" type="Control" parent="MoreUIPlaceVertical"]
+margin_top = 660.0
+margin_right = 40.0
+margin_bottom = 700.0
+rect_min_size = Vector2( 40, 40 )
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/HarvestingControl"]
+anchor_right = 1.0
+anchor_bottom = 0.984
+margin_bottom = 2.048
+
+[node name="TextureRect" type="TextureRect" parent="MoreUIPlaceVertical/HarvestingControl/AspectRatioContainer"]
+margin_top = 0.704
+margin_right = 40.0
+margin_bottom = 40.704
+rect_pivot_offset = Vector2( 64, 64 )
+texture = ExtResource( 17 )
+expand = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/HarvestingControl"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 50.0
+margin_top = 4.0
+margin_right = 180.0
+margin_bottom = 3.0
+alignment = 1
+
+[node name="More_UI_Harvesting" type="RichTextLabel" parent="MoreUIPlaceVertical/HarvestingControl/VBoxContainer"]
+unique_name_in_owner = true
+margin_top = 8.0
+margin_right = 170.0
+margin_bottom = 30.0
+custom_fonts/normal_font = ExtResource( 1 )
+bbcode_enabled = true
+fit_content_height = true
