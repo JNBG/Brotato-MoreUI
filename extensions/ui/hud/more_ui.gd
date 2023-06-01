@@ -56,7 +56,6 @@ func _ready()->void:
 	
 	
 func _update_stats_ui():
-	ModLoaderUtils.log_info("Timer", 'MMM')
 	if wave_timer != null and is_instance_valid(wave_timer) and not is_run_lost:
 		var time = ceil(wave_timer.time_left)
 		if time > 0:
@@ -67,7 +66,11 @@ func _update_stats_ui():
 			
 	if max_hp_field != null:
 		var maxHPValue = floor(Utils.get_stat('stat_max_hp'))
-		max_hp_field.bbcode_text = "[color=" + _get_value_color(maxHPValue) + "]" + str(maxHPValue) + "[/color]"
+		var maxHPString = str(maxHPValue);
+		var maxHPCap = Utils.get_stat('hp_cap');
+		if (maxHPValue >= maxHPCap && maxHPCap != 999999):
+			maxHPString = maxHPString + ' | ' + str(maxHPCap)
+		max_hp_field.bbcode_text = "[color=" + _get_value_color(maxHPValue) + "]" + maxHPString + "[/color]"
 	if hp_regen_field != null:
 		var hpRegenValue = floor(Utils.get_stat('stat_hp_regeneration'))
 		hp_regen_field.bbcode_text = "[color=" + _get_value_color(hpRegenValue) + "]" + str(hpRegenValue) + "[/color]"
@@ -103,7 +106,11 @@ func _update_stats_ui():
 		armor_field.bbcode_text = "[color=" + _get_value_color(armorValue) + "]" + str(armorValue) + "[/color]"
 	if dodge_field != null:
 		var dodgeValue = floor(Utils.get_stat('stat_dodge'))
-		dodge_field.bbcode_text = "[color=" + _get_value_color(dodgeValue) + "]" + str(dodgeValue) + "[/color]"
+		var maxDodge = Utils.get_stat('dodge_cap') - 120
+		var dodgeString = str(dodgeValue);
+		if (dodgeValue >= maxDodge):
+			dodgeString = dodgeString + ' | ' + str(maxDodge)
+		dodge_field.bbcode_text = "[color=" + _get_value_color(dodgeValue) + "]" + dodgeString + "[/color]"
 	if speed_field != null:
 		var speedValue = floor(Utils.get_stat('stat_speed'))
 		speed_field.bbcode_text = "[color=" + _get_value_color(speedValue) + "]" + str(speedValue) + "[/color]"

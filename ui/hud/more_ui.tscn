@@ -1,22 +1,22 @@
 [gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://mods-unpacked/MincedMeatMole-MoreUI/resources/fonts/actual/more_ui_font.tres" type="DynamicFont" id=1]
-[ext_resource path="res://items/stats/max_hp.png" type="Texture" id=2]
-[ext_resource path="res://items/stats/percent_damage.png" type="Texture" id=3]
-[ext_resource path="res://items/stats/hp_regeneration.png" type="Texture" id=4]
-[ext_resource path="res://items/stats/lifesteal.png" type="Texture" id=5]
-[ext_resource path="res://items/stats/elemental_damage.png" type="Texture" id=6]
-[ext_resource path="res://items/stats/ranged_damage.png" type="Texture" id=7]
-[ext_resource path="res://items/stats/attack_speed.png" type="Texture" id=8]
-[ext_resource path="res://items/stats/melee_damage.png" type="Texture" id=9]
-[ext_resource path="res://items/stats/crit_chance.png" type="Texture" id=10]
-[ext_resource path="res://items/stats/armor.png" type="Texture" id=11]
-[ext_resource path="res://items/stats/range.png" type="Texture" id=12]
-[ext_resource path="res://items/stats/engineering.png" type="Texture" id=13]
-[ext_resource path="res://items/stats/speed.png" type="Texture" id=14]
-[ext_resource path="res://items/stats/luck.png" type="Texture" id=15]
-[ext_resource path="res://items/stats/dodge.png" type="Texture" id=16]
-[ext_resource path="res://items/stats/harvesting.png" type="Texture" id=17]
+[ext_resource path="res://mods-unpacked/MincedMeatMole-MoreUI/ui/hud/moreui_lifesteal.png" type="Texture" id=2]
+[ext_resource path="res://mods-unpacked/MincedMeatMole-MoreUI/ui/hud/moreui_percent_damage.png" type="Texture" id=3]
+[ext_resource path="res://mods-unpacked/MincedMeatMole-MoreUI/ui/hud/moreui_hp_regeneration.png" type="Texture" id=4]
+[ext_resource path="res://mods-unpacked/MincedMeatMole-MoreUI/ui/hud/moreui_max_hp.png" type="Texture" id=5]
+[ext_resource path="res://mods-unpacked/MincedMeatMole-MoreUI/ui/hud/moreui_speed.png" type="Texture" id=6]
+[ext_resource path="res://mods-unpacked/MincedMeatMole-MoreUI/ui/hud/moreui_ranged_damage.png" type="Texture" id=7]
+[ext_resource path="res://mods-unpacked/MincedMeatMole-MoreUI/ui/hud/moreui_attack_speed.png" type="Texture" id=8]
+[ext_resource path="res://mods-unpacked/MincedMeatMole-MoreUI/ui/hud/moreui_melee_damage.png" type="Texture" id=9]
+[ext_resource path="res://mods-unpacked/MincedMeatMole-MoreUI/ui/hud/moreui_dodge.png" type="Texture" id=10]
+[ext_resource path="res://mods-unpacked/MincedMeatMole-MoreUI/ui/hud/moreui_range.png" type="Texture" id=11]
+[ext_resource path="res://mods-unpacked/MincedMeatMole-MoreUI/ui/hud/moreui_armor.png" type="Texture" id=12]
+[ext_resource path="res://mods-unpacked/MincedMeatMole-MoreUI/ui/hud/moreui_harvesting.png" type="Texture" id=13]
+[ext_resource path="res://mods-unpacked/MincedMeatMole-MoreUI/ui/hud/moreui_luck.png" type="Texture" id=14]
+[ext_resource path="res://mods-unpacked/MincedMeatMole-MoreUI/ui/hud/moreui_elemental_damage.png" type="Texture" id=15]
+[ext_resource path="res://mods-unpacked/MincedMeatMole-MoreUI/ui/hud/moreui_crit_chance.png" type="Texture" id=16]
+[ext_resource path="res://mods-unpacked/MincedMeatMole-MoreUI/ui/hud/moreui_engineering.png" type="Texture" id=17]
 
 [node name="MoreUIPlaceHorizontal" type="HBoxContainer"]
 margin_top = 1080.0
@@ -46,7 +46,7 @@ margin_top = 0.704
 margin_right = 40.0
 margin_bottom = 40.704
 rect_pivot_offset = Vector2( 64, 64 )
-texture = ExtResource( 2 )
+texture = ExtResource( 5 )
 expand = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/MaxHPControl"]
@@ -120,7 +120,7 @@ margin_top = 0.704
 margin_right = 40.0
 margin_bottom = 40.704
 rect_pivot_offset = Vector2( 64, 64 )
-texture = ExtResource( 5 )
+texture = ExtResource( 2 )
 expand = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/LifeStealControl"]
@@ -268,7 +268,7 @@ margin_top = 0.704
 margin_right = 40.0
 margin_bottom = 40.704
 rect_pivot_offset = Vector2( 64, 64 )
-texture = ExtResource( 6 )
+texture = ExtResource( 15 )
 expand = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/ElementalDamageControl"]
@@ -342,7 +342,7 @@ margin_top = 0.704
 margin_right = 40.0
 margin_bottom = 40.704
 rect_pivot_offset = Vector2( 64, 64 )
-texture = ExtResource( 10 )
+texture = ExtResource( 16 )
 expand = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/CritChanceControl"]
@@ -379,7 +379,7 @@ margin_top = 0.704
 margin_right = 40.0
 margin_bottom = 40.704
 rect_pivot_offset = Vector2( 64, 64 )
-texture = ExtResource( 13 )
+texture = ExtResource( 17 )
 expand = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/EngineeringControl"]
@@ -416,7 +416,7 @@ margin_top = 0.704
 margin_right = 40.0
 margin_bottom = 40.704
 rect_pivot_offset = Vector2( 64, 64 )
-texture = ExtResource( 12 )
+texture = ExtResource( 11 )
 expand = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/RangeControl"]
@@ -453,7 +453,7 @@ margin_top = 0.704
 margin_right = 40.0
 margin_bottom = 40.704
 rect_pivot_offset = Vector2( 64, 64 )
-texture = ExtResource( 11 )
+texture = ExtResource( 12 )
 expand = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/ArmorControl"]
@@ -490,7 +490,7 @@ margin_top = 0.704
 margin_right = 40.0
 margin_bottom = 40.704
 rect_pivot_offset = Vector2( 64, 64 )
-texture = ExtResource( 16 )
+texture = ExtResource( 10 )
 expand = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/DodgeControl"]
@@ -527,7 +527,7 @@ margin_top = 0.704
 margin_right = 40.0
 margin_bottom = 40.704
 rect_pivot_offset = Vector2( 64, 64 )
-texture = ExtResource( 14 )
+texture = ExtResource( 6 )
 expand = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/SpeedControl"]
@@ -564,7 +564,7 @@ margin_top = 0.704
 margin_right = 40.0
 margin_bottom = 40.704
 rect_pivot_offset = Vector2( 64, 64 )
-texture = ExtResource( 15 )
+texture = ExtResource( 14 )
 expand = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/LuckControl"]
@@ -601,7 +601,7 @@ margin_top = 0.704
 margin_right = 40.0
 margin_bottom = 40.704
 rect_pivot_offset = Vector2( 64, 64 )
-texture = ExtResource( 17 )
+texture = ExtResource( 13 )
 expand = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/HarvestingControl"]
