@@ -1,6 +1,6 @@
 extends "res://ui/hud/ui_wave_timer.gd"
 
-onready var hud: MarginContainer = get_tree().get_current_scene().get_node("UI/HUD")
+onready var moreui_hud: MarginContainer = get_tree().get_current_scene().get_node("UI/HUD")
 
 var more_ui_container
 var prev_time
@@ -24,10 +24,10 @@ var harvesting_field: RichTextLabel
 
 func _ready()->void:
 	more_ui_container = preload("res://mods-unpacked/MincedMeatMole-MoreUI/ui/hud/more_ui.tscn").instance()
-	hud.margin_bottom = 0
-	hud.anchor_bottom = 1
-	hud.call_deferred("add_child", more_ui_container)
-	hud.mouse_filter = MOUSE_FILTER_IGNORE
+	moreui_hud.margin_bottom = 0
+	moreui_hud.anchor_bottom = 1
+	moreui_hud.call_deferred("add_child", more_ui_container)
+	moreui_hud.mouse_filter = MOUSE_FILTER_IGNORE
 	max_hp_field = more_ui_container.get_node("%More_UI_MaxHP")
 	hp_regen_field = more_ui_container.get_node("%More_UI_HP_Regen")
 	lifesteal_field = more_ui_container.get_node("%More_UI_LifeSteal")
