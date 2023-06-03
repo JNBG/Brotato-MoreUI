@@ -7,6 +7,7 @@ var more_ui_save_data  = {}
 var more_ui_container
 var _more_ui_timer = null
 var _whats_new_mode_enabled = false
+var _wave_increase_enabled = false
 
 var max_hp_field: RichTextLabel
 var hp_regen_field: RichTextLabel
@@ -62,8 +63,13 @@ var inital_harvesting: int
 func _ready()->void:
 	_more_ui_load_data()
 	var MoreUIConfigInterface = get_node("/root/ModLoader/MincedMeatMole-MoreUI/MoreUIConfigInterface")
-	MoreUIConfigInterface.connect("more_ui_setting_changed", self, "_on_whats_new_mode_changed")
+	MoreUIConfigInterface.connect("more_ui_setting_changed", self, "_on_more_ui_setting_changed")
+	if not "whats_new_mode_enabled" in more_ui_save_data:
+		more_ui_save_data.whats_new_mode_enabled = true
+	if not "wave_increase_enabled" in more_ui_save_data:
+		more_ui_save_data.wave_increase_enabled = false
 	_whats_new_mode_enabled = more_ui_save_data.whats_new_mode_enabled
+	_wave_increase_enabled = more_ui_save_data.wave_increase_enabled
 
 	more_ui_container = preload("res://mods-unpacked/MincedMeatMole-MoreUI/ui/hud/more_ui.tscn").instance()
 	moreui_hud.margin_bottom = 0
@@ -166,7 +172,17 @@ func _update_stats_ui():
 		var maxDodge = Utils.get_stat('dodge_cap') - 120
 		var dodgeString = str(dodgeValue);
 		if (dodgeValue >= maxDodge):
-			dodgeString = dodgeString + ' | ' + str(maxDodge)
+			dodgeString += ' | ' + str(maxDodge)
+			
+		var change = dodgeValue - inital_dodge
+		if (_wave_increase_enabled and change != 0):
+			dodgeString += " ("
+			if (change > 0):
+				dodgeString += "+" + str(change)
+			else:
+				dodgeString += str(change)
+			dodgeString += ") "
+			
 		dodge_field.bbcode_text = "[color=" + _get_value_color(dodgeValue) + "]" + dodgeString + "[/color]"
 		if (_whats_new_mode_enabled && dodgeValue != inital_dodge):
 			dodge_field_control.visible = true
@@ -175,7 +191,17 @@ func _update_stats_ui():
 		var maxHPString = str(maxHPValue);
 		var maxHPCap = Utils.get_stat('hp_cap');
 		if (maxHPValue >= maxHPCap && maxHPCap != 999999):
-			maxHPString = maxHPString + ' | ' + str(maxHPCap)
+			maxHPString += ' | ' + str(maxHPCap)
+			
+		var change = maxHPValue - inital_max_hp;
+		if (_wave_increase_enabled and change != 0):
+			maxHPString += " ("
+			if (change > 0):
+				maxHPString += "+" + str(change)
+			else:
+				maxHPString += str(change)
+			maxHPString += ") "
+			
 		max_hp_field.bbcode_text = "[color=" + _get_value_color(maxHPValue) + "]" + maxHPString + "[/color]"
 		if (_whats_new_mode_enabled && maxHPValue != inital_max_hp):
 			max_hp_field_control.visible = true
@@ -183,7 +209,16 @@ func _update_stats_ui():
 func _update_single_field(field,stat_name,initial_value,control):
 	if field != null:
 		var value = floor(Utils.get_stat(stat_name))
-		field.bbcode_text = "[color=" + _get_value_color(value) + "]" + str(value) + "[/color]"
+		var output = str(value)
+		var change = value - initial_value;
+		if (_wave_increase_enabled and change != 0):
+			output += " ("
+			if (change > 0):
+				output += "+" + str(change)
+			else:
+				output += str(change)
+			output += ") "
+		field.bbcode_text = "[color=" + _get_value_color(value) + "]" + output + "[/color]"
 		if (_whats_new_mode_enabled && value != initial_value):
 			control.visible = true
 
@@ -195,9 +230,11 @@ func _get_value_color(value):
 	else:
 		return "#fff"
 		
-func _on_whats_new_mode_changed(setting_name:String, value):
+func _on_more_ui_setting_changed(setting_name:String, value):
 	if setting_name == "whats_new_mode_enabled" and value is bool:
 		_set_whats_new_mode(value)
+	if setting_name == "wave_increase_enabled" and value is bool:
+		_set_wave_increase_enabled(value)
 
 
 func _set_whats_new_mode(mode_enabled:bool):
@@ -206,6 +243,9 @@ func _set_whats_new_mode(mode_enabled:bool):
 		_toggle_control_visbility(false)
 	else:
 		_toggle_control_visbility(true)
+		
+func _set_wave_increase_enabled(value:bool):
+	_wave_increase_enabled = value
 
 func _toggle_control_visbility(onoff:bool):
 	if max_hp_field_control != null:
@@ -252,7 +292,8 @@ func _more_ui_load_data():
 	var file = File.new()
 	if not file.file_exists(MORE_UI_SAVE_FILE):
 		more_ui_save_data = {
-			"whats_new_mode_enabled": true
+			"whats_new_mode_enabled": true,
+			"wave_increase_enabled": false
 		}
 		_more_ui_save_data()
 	file.open(MORE_UI_SAVE_FILE, File.READ)

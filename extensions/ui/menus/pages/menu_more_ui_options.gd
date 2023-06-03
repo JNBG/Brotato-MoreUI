@@ -8,6 +8,7 @@ signal more_ui_setting_changed(setting_name, value)
 
 onready var back_button = $BackButton
 onready var check_whats_new = $WhatsNewModeEnabled
+onready var check_wave_increase = $WaveIncreaseEnabled
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -19,8 +20,14 @@ func init():
 	$BackButton.grab_focus()
 	
 	_more_ui_load_data()
+	if not "whats_new_mode_enabled" in more_ui_save_data:
+		more_ui_save_data.whats_new_mode_enabled = true
 	check_whats_new.pressed = more_ui_save_data.whats_new_mode_enabled
 	check_whats_new.connect("toggled", self, "moreui_signal_setting_changed", ["whats_new_mode_enabled"])
+	if not "wave_increase_enabled" in more_ui_save_data:
+		more_ui_save_data.wave_increase_enabled = false
+	check_wave_increase.pressed = more_ui_save_data.wave_increase_enabled
+	check_wave_increase.connect("toggled", self, "moreui_signal_setting_changed", ["wave_increase_enabled"])
 
 func _more_ui_save_data():
 	var file = File.new()
@@ -33,7 +40,8 @@ func _more_ui_load_data():
 	var file = File.new()
 	if not file.file_exists(MORE_UI_SAVE_FILE):
 		more_ui_save_data = {
-			"whats_new_mode_enabled": true
+			"whats_new_mode_enabled": true,
+			"wave_increase_enabled": false
 		}
 		_more_ui_save_data()
 	file.open(MORE_UI_SAVE_FILE, File.READ)
