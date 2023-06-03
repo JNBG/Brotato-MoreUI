@@ -31,17 +31,18 @@ margin_bottom = 700.0
 mouse_filter = 2
 alignment = 2
 
-[node name="MaxHPControl" type="Control" parent="MoreUIPlaceVertical"]
+[node name="MoreUI_MaxHPControl" type="Control" parent="MoreUIPlaceVertical"]
+unique_name_in_owner = true
 margin_right = 40.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 40, 40 )
 
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/MaxHPControl"]
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/MoreUI_MaxHPControl"]
 anchor_right = 1.0
 anchor_bottom = 0.984
 margin_bottom = 2.048
 
-[node name="TextureRect" type="TextureRect" parent="MoreUIPlaceVertical/MaxHPControl/AspectRatioContainer"]
+[node name="TextureRect" type="TextureRect" parent="MoreUIPlaceVertical/MoreUI_MaxHPControl/AspectRatioContainer"]
 margin_top = 0.704
 margin_right = 40.0
 margin_bottom = 40.704
@@ -49,7 +50,7 @@ rect_pivot_offset = Vector2( 64, 64 )
 texture = ExtResource( 5 )
 expand = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/MaxHPControl"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/MoreUI_MaxHPControl"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 50.0
@@ -58,7 +59,7 @@ margin_right = 180.0
 margin_bottom = 3.0
 alignment = 1
 
-[node name="More_UI_MaxHP" type="RichTextLabel" parent="MoreUIPlaceVertical/MaxHPControl/VBoxContainer"]
+[node name="More_UI_MaxHP" type="RichTextLabel" parent="MoreUIPlaceVertical/MoreUI_MaxHPControl/VBoxContainer"]
 unique_name_in_owner = true
 margin_top = 8.0
 margin_right = 170.0
@@ -67,18 +68,19 @@ custom_fonts/normal_font = ExtResource( 1 )
 bbcode_enabled = true
 fit_content_height = true
 
-[node name="HPRegenControl" type="Control" parent="MoreUIPlaceVertical"]
+[node name="MoreUI_HPRegenControl" type="Control" parent="MoreUIPlaceVertical"]
+unique_name_in_owner = true
 margin_top = 44.0
 margin_right = 40.0
 margin_bottom = 84.0
 rect_min_size = Vector2( 40, 40 )
 
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/HPRegenControl"]
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/MoreUI_HPRegenControl"]
 anchor_right = 1.0
 anchor_bottom = 0.984
 margin_bottom = 2.048
 
-[node name="TextureRect" type="TextureRect" parent="MoreUIPlaceVertical/HPRegenControl/AspectRatioContainer"]
+[node name="TextureRect" type="TextureRect" parent="MoreUIPlaceVertical/MoreUI_HPRegenControl/AspectRatioContainer"]
 margin_top = 0.704
 margin_right = 40.0
 margin_bottom = 40.704
@@ -86,7 +88,7 @@ rect_pivot_offset = Vector2( 64, 64 )
 texture = ExtResource( 4 )
 expand = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/HPRegenControl"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/MoreUI_HPRegenControl"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 50.0
@@ -95,7 +97,7 @@ margin_right = 180.0
 margin_bottom = 3.0
 alignment = 1
 
-[node name="More_UI_HP_Regen" type="RichTextLabel" parent="MoreUIPlaceVertical/HPRegenControl/VBoxContainer"]
+[node name="More_UI_HP_Regen" type="RichTextLabel" parent="MoreUIPlaceVertical/MoreUI_HPRegenControl/VBoxContainer"]
 unique_name_in_owner = true
 margin_top = 8.0
 margin_right = 170.0
@@ -104,18 +106,19 @@ custom_fonts/normal_font = ExtResource( 1 )
 bbcode_enabled = true
 fit_content_height = true
 
-[node name="LifeStealControl" type="Control" parent="MoreUIPlaceVertical"]
+[node name="MoreUI_LifeStealControl" type="Control" parent="MoreUIPlaceVertical"]
+unique_name_in_owner = true
 margin_top = 88.0
 margin_right = 40.0
 margin_bottom = 128.0
 rect_min_size = Vector2( 40, 40 )
 
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/LifeStealControl"]
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/MoreUI_LifeStealControl"]
 anchor_right = 1.0
 anchor_bottom = 0.984
 margin_bottom = 2.048
 
-[node name="TextureRect" type="TextureRect" parent="MoreUIPlaceVertical/LifeStealControl/AspectRatioContainer"]
+[node name="TextureRect" type="TextureRect" parent="MoreUIPlaceVertical/MoreUI_LifeStealControl/AspectRatioContainer"]
 margin_top = 0.704
 margin_right = 40.0
 margin_bottom = 40.704
@@ -123,7 +126,7 @@ rect_pivot_offset = Vector2( 64, 64 )
 texture = ExtResource( 2 )
 expand = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/LifeStealControl"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/MoreUI_LifeStealControl"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 50.0
@@ -132,7 +135,7 @@ margin_right = 180.0
 margin_bottom = 3.0
 alignment = 1
 
-[node name="More_UI_LifeSteal" type="RichTextLabel" parent="MoreUIPlaceVertical/LifeStealControl/VBoxContainer"]
+[node name="More_UI_LifeSteal" type="RichTextLabel" parent="MoreUIPlaceVertical/MoreUI_LifeStealControl/VBoxContainer"]
 unique_name_in_owner = true
 margin_top = 8.0
 margin_right = 170.0
@@ -141,18 +144,19 @@ custom_fonts/normal_font = ExtResource( 1 )
 bbcode_enabled = true
 fit_content_height = true
 
-[node name="DamageControl" type="Control" parent="MoreUIPlaceVertical"]
+[node name="MoreUI_DamageControl" type="Control" parent="MoreUIPlaceVertical"]
+unique_name_in_owner = true
 margin_top = 132.0
 margin_right = 40.0
 margin_bottom = 172.0
 rect_min_size = Vector2( 40, 40 )
 
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/DamageControl"]
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/MoreUI_DamageControl"]
 anchor_right = 1.0
 anchor_bottom = 0.984
 margin_bottom = 2.048
 
-[node name="TextureRect" type="TextureRect" parent="MoreUIPlaceVertical/DamageControl/AspectRatioContainer"]
+[node name="TextureRect" type="TextureRect" parent="MoreUIPlaceVertical/MoreUI_DamageControl/AspectRatioContainer"]
 margin_top = 0.704
 margin_right = 40.0
 margin_bottom = 40.704
@@ -160,7 +164,7 @@ rect_pivot_offset = Vector2( 64, 64 )
 texture = ExtResource( 3 )
 expand = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/DamageControl"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/MoreUI_DamageControl"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 50.0
@@ -169,7 +173,7 @@ margin_right = 180.0
 margin_bottom = 3.0
 alignment = 1
 
-[node name="More_UI_Damage" type="RichTextLabel" parent="MoreUIPlaceVertical/DamageControl/VBoxContainer"]
+[node name="More_UI_Damage" type="RichTextLabel" parent="MoreUIPlaceVertical/MoreUI_DamageControl/VBoxContainer"]
 unique_name_in_owner = true
 margin_top = 8.0
 margin_right = 170.0
@@ -178,18 +182,19 @@ custom_fonts/normal_font = ExtResource( 1 )
 bbcode_enabled = true
 fit_content_height = true
 
-[node name="MeleeDamageControl" type="Control" parent="MoreUIPlaceVertical"]
+[node name="MoreUI_MeleeDamageControl" type="Control" parent="MoreUIPlaceVertical"]
+unique_name_in_owner = true
 margin_top = 176.0
 margin_right = 40.0
 margin_bottom = 216.0
 rect_min_size = Vector2( 40, 40 )
 
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/MeleeDamageControl"]
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/MoreUI_MeleeDamageControl"]
 anchor_right = 1.0
 anchor_bottom = 0.984
 margin_bottom = 2.048
 
-[node name="TextureRect" type="TextureRect" parent="MoreUIPlaceVertical/MeleeDamageControl/AspectRatioContainer"]
+[node name="TextureRect" type="TextureRect" parent="MoreUIPlaceVertical/MoreUI_MeleeDamageControl/AspectRatioContainer"]
 margin_top = 0.704
 margin_right = 40.0
 margin_bottom = 40.704
@@ -197,7 +202,7 @@ rect_pivot_offset = Vector2( 64, 64 )
 texture = ExtResource( 9 )
 expand = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/MeleeDamageControl"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/MoreUI_MeleeDamageControl"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 50.0
@@ -206,7 +211,7 @@ margin_right = 180.0
 margin_bottom = 3.0
 alignment = 1
 
-[node name="More_UI_MeleeDamage" type="RichTextLabel" parent="MoreUIPlaceVertical/MeleeDamageControl/VBoxContainer"]
+[node name="More_UI_MeleeDamage" type="RichTextLabel" parent="MoreUIPlaceVertical/MoreUI_MeleeDamageControl/VBoxContainer"]
 unique_name_in_owner = true
 margin_top = 8.0
 margin_right = 170.0
@@ -215,18 +220,19 @@ custom_fonts/normal_font = ExtResource( 1 )
 bbcode_enabled = true
 fit_content_height = true
 
-[node name="RangedDamageControl" type="Control" parent="MoreUIPlaceVertical"]
+[node name="MoreUI_RangedDamageControl" type="Control" parent="MoreUIPlaceVertical"]
+unique_name_in_owner = true
 margin_top = 220.0
 margin_right = 40.0
 margin_bottom = 260.0
 rect_min_size = Vector2( 40, 40 )
 
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/RangedDamageControl"]
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/MoreUI_RangedDamageControl"]
 anchor_right = 1.0
 anchor_bottom = 0.984
 margin_bottom = 2.048
 
-[node name="TextureRect" type="TextureRect" parent="MoreUIPlaceVertical/RangedDamageControl/AspectRatioContainer"]
+[node name="TextureRect" type="TextureRect" parent="MoreUIPlaceVertical/MoreUI_RangedDamageControl/AspectRatioContainer"]
 margin_top = 0.704
 margin_right = 40.0
 margin_bottom = 40.704
@@ -234,7 +240,7 @@ rect_pivot_offset = Vector2( 64, 64 )
 texture = ExtResource( 7 )
 expand = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/RangedDamageControl"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/MoreUI_RangedDamageControl"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 50.0
@@ -243,7 +249,7 @@ margin_right = 180.0
 margin_bottom = 3.0
 alignment = 1
 
-[node name="More_UI_RangedDamage" type="RichTextLabel" parent="MoreUIPlaceVertical/RangedDamageControl/VBoxContainer"]
+[node name="More_UI_RangedDamage" type="RichTextLabel" parent="MoreUIPlaceVertical/MoreUI_RangedDamageControl/VBoxContainer"]
 unique_name_in_owner = true
 margin_top = 8.0
 margin_right = 170.0
@@ -252,18 +258,19 @@ custom_fonts/normal_font = ExtResource( 1 )
 bbcode_enabled = true
 fit_content_height = true
 
-[node name="ElementalDamageControl" type="Control" parent="MoreUIPlaceVertical"]
+[node name="MoreUI_ElementalDamageControl" type="Control" parent="MoreUIPlaceVertical"]
+unique_name_in_owner = true
 margin_top = 264.0
 margin_right = 40.0
 margin_bottom = 304.0
 rect_min_size = Vector2( 40, 40 )
 
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/ElementalDamageControl"]
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/MoreUI_ElementalDamageControl"]
 anchor_right = 1.0
 anchor_bottom = 0.984
 margin_bottom = 2.048
 
-[node name="TextureRect" type="TextureRect" parent="MoreUIPlaceVertical/ElementalDamageControl/AspectRatioContainer"]
+[node name="TextureRect" type="TextureRect" parent="MoreUIPlaceVertical/MoreUI_ElementalDamageControl/AspectRatioContainer"]
 margin_top = 0.704
 margin_right = 40.0
 margin_bottom = 40.704
@@ -271,7 +278,7 @@ rect_pivot_offset = Vector2( 64, 64 )
 texture = ExtResource( 15 )
 expand = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/ElementalDamageControl"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/MoreUI_ElementalDamageControl"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 50.0
@@ -280,7 +287,7 @@ margin_right = 180.0
 margin_bottom = 3.0
 alignment = 1
 
-[node name="More_UI_ElementalDamage" type="RichTextLabel" parent="MoreUIPlaceVertical/ElementalDamageControl/VBoxContainer"]
+[node name="More_UI_ElementalDamage" type="RichTextLabel" parent="MoreUIPlaceVertical/MoreUI_ElementalDamageControl/VBoxContainer"]
 unique_name_in_owner = true
 margin_top = 8.0
 margin_right = 170.0
@@ -289,18 +296,19 @@ custom_fonts/normal_font = ExtResource( 1 )
 bbcode_enabled = true
 fit_content_height = true
 
-[node name="AttackSpeedControl" type="Control" parent="MoreUIPlaceVertical"]
+[node name="MoreUI_AttackSpeedControl" type="Control" parent="MoreUIPlaceVertical"]
+unique_name_in_owner = true
 margin_top = 308.0
 margin_right = 40.0
 margin_bottom = 348.0
 rect_min_size = Vector2( 40, 40 )
 
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/AttackSpeedControl"]
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/MoreUI_AttackSpeedControl"]
 anchor_right = 1.0
 anchor_bottom = 0.984
 margin_bottom = 2.048
 
-[node name="TextureRect" type="TextureRect" parent="MoreUIPlaceVertical/AttackSpeedControl/AspectRatioContainer"]
+[node name="TextureRect" type="TextureRect" parent="MoreUIPlaceVertical/MoreUI_AttackSpeedControl/AspectRatioContainer"]
 margin_top = 0.704
 margin_right = 40.0
 margin_bottom = 40.704
@@ -308,7 +316,7 @@ rect_pivot_offset = Vector2( 64, 64 )
 texture = ExtResource( 8 )
 expand = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/AttackSpeedControl"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/MoreUI_AttackSpeedControl"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 50.0
@@ -317,7 +325,7 @@ margin_right = 180.0
 margin_bottom = 3.0
 alignment = 1
 
-[node name="More_UI_AttackSpeed" type="RichTextLabel" parent="MoreUIPlaceVertical/AttackSpeedControl/VBoxContainer"]
+[node name="More_UI_AttackSpeed" type="RichTextLabel" parent="MoreUIPlaceVertical/MoreUI_AttackSpeedControl/VBoxContainer"]
 unique_name_in_owner = true
 margin_top = 8.0
 margin_right = 170.0
@@ -326,18 +334,19 @@ custom_fonts/normal_font = ExtResource( 1 )
 bbcode_enabled = true
 fit_content_height = true
 
-[node name="CritChanceControl" type="Control" parent="MoreUIPlaceVertical"]
+[node name="MoreUI_CritChanceControl" type="Control" parent="MoreUIPlaceVertical"]
+unique_name_in_owner = true
 margin_top = 352.0
 margin_right = 40.0
 margin_bottom = 392.0
 rect_min_size = Vector2( 40, 40 )
 
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/CritChanceControl"]
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/MoreUI_CritChanceControl"]
 anchor_right = 1.0
 anchor_bottom = 0.984
 margin_bottom = 2.048
 
-[node name="TextureRect" type="TextureRect" parent="MoreUIPlaceVertical/CritChanceControl/AspectRatioContainer"]
+[node name="TextureRect" type="TextureRect" parent="MoreUIPlaceVertical/MoreUI_CritChanceControl/AspectRatioContainer"]
 margin_top = 0.704
 margin_right = 40.0
 margin_bottom = 40.704
@@ -345,7 +354,7 @@ rect_pivot_offset = Vector2( 64, 64 )
 texture = ExtResource( 16 )
 expand = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/CritChanceControl"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/MoreUI_CritChanceControl"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 50.0
@@ -354,7 +363,7 @@ margin_right = 180.0
 margin_bottom = 3.0
 alignment = 1
 
-[node name="More_UI_CritChance" type="RichTextLabel" parent="MoreUIPlaceVertical/CritChanceControl/VBoxContainer"]
+[node name="More_UI_CritChance" type="RichTextLabel" parent="MoreUIPlaceVertical/MoreUI_CritChanceControl/VBoxContainer"]
 unique_name_in_owner = true
 margin_top = 8.0
 margin_right = 170.0
@@ -363,18 +372,19 @@ custom_fonts/normal_font = ExtResource( 1 )
 bbcode_enabled = true
 fit_content_height = true
 
-[node name="EngineeringControl" type="Control" parent="MoreUIPlaceVertical"]
+[node name="MoreUI_EngineeringControl" type="Control" parent="MoreUIPlaceVertical"]
+unique_name_in_owner = true
 margin_top = 396.0
 margin_right = 40.0
 margin_bottom = 436.0
 rect_min_size = Vector2( 40, 40 )
 
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/EngineeringControl"]
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/MoreUI_EngineeringControl"]
 anchor_right = 1.0
 anchor_bottom = 0.984
 margin_bottom = 2.048
 
-[node name="TextureRect" type="TextureRect" parent="MoreUIPlaceVertical/EngineeringControl/AspectRatioContainer"]
+[node name="TextureRect" type="TextureRect" parent="MoreUIPlaceVertical/MoreUI_EngineeringControl/AspectRatioContainer"]
 margin_top = 0.704
 margin_right = 40.0
 margin_bottom = 40.704
@@ -382,7 +392,7 @@ rect_pivot_offset = Vector2( 64, 64 )
 texture = ExtResource( 17 )
 expand = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/EngineeringControl"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/MoreUI_EngineeringControl"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 50.0
@@ -391,7 +401,7 @@ margin_right = 180.0
 margin_bottom = 3.0
 alignment = 1
 
-[node name="More_UI_Engineering" type="RichTextLabel" parent="MoreUIPlaceVertical/EngineeringControl/VBoxContainer"]
+[node name="More_UI_Engineering" type="RichTextLabel" parent="MoreUIPlaceVertical/MoreUI_EngineeringControl/VBoxContainer"]
 unique_name_in_owner = true
 margin_top = 8.0
 margin_right = 170.0
@@ -400,18 +410,19 @@ custom_fonts/normal_font = ExtResource( 1 )
 bbcode_enabled = true
 fit_content_height = true
 
-[node name="RangeControl" type="Control" parent="MoreUIPlaceVertical"]
+[node name="MoreUI_RangeControl" type="Control" parent="MoreUIPlaceVertical"]
+unique_name_in_owner = true
 margin_top = 440.0
 margin_right = 40.0
 margin_bottom = 480.0
 rect_min_size = Vector2( 40, 40 )
 
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/RangeControl"]
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/MoreUI_RangeControl"]
 anchor_right = 1.0
 anchor_bottom = 0.984
 margin_bottom = 2.048
 
-[node name="TextureRect" type="TextureRect" parent="MoreUIPlaceVertical/RangeControl/AspectRatioContainer"]
+[node name="TextureRect" type="TextureRect" parent="MoreUIPlaceVertical/MoreUI_RangeControl/AspectRatioContainer"]
 margin_top = 0.704
 margin_right = 40.0
 margin_bottom = 40.704
@@ -419,7 +430,7 @@ rect_pivot_offset = Vector2( 64, 64 )
 texture = ExtResource( 11 )
 expand = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/RangeControl"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/MoreUI_RangeControl"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 50.0
@@ -428,7 +439,7 @@ margin_right = 180.0
 margin_bottom = 3.0
 alignment = 1
 
-[node name="More_UI_Range" type="RichTextLabel" parent="MoreUIPlaceVertical/RangeControl/VBoxContainer"]
+[node name="More_UI_Range" type="RichTextLabel" parent="MoreUIPlaceVertical/MoreUI_RangeControl/VBoxContainer"]
 unique_name_in_owner = true
 margin_top = 8.0
 margin_right = 170.0
@@ -437,18 +448,19 @@ custom_fonts/normal_font = ExtResource( 1 )
 bbcode_enabled = true
 fit_content_height = true
 
-[node name="ArmorControl" type="Control" parent="MoreUIPlaceVertical"]
+[node name="MoreUI_ArmorControl" type="Control" parent="MoreUIPlaceVertical"]
+unique_name_in_owner = true
 margin_top = 484.0
 margin_right = 40.0
 margin_bottom = 524.0
 rect_min_size = Vector2( 40, 40 )
 
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/ArmorControl"]
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/MoreUI_ArmorControl"]
 anchor_right = 1.0
 anchor_bottom = 0.984
 margin_bottom = 2.048
 
-[node name="TextureRect" type="TextureRect" parent="MoreUIPlaceVertical/ArmorControl/AspectRatioContainer"]
+[node name="TextureRect" type="TextureRect" parent="MoreUIPlaceVertical/MoreUI_ArmorControl/AspectRatioContainer"]
 margin_top = 0.704
 margin_right = 40.0
 margin_bottom = 40.704
@@ -456,7 +468,7 @@ rect_pivot_offset = Vector2( 64, 64 )
 texture = ExtResource( 12 )
 expand = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/ArmorControl"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/MoreUI_ArmorControl"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 50.0
@@ -465,7 +477,7 @@ margin_right = 180.0
 margin_bottom = 3.0
 alignment = 1
 
-[node name="More_UI_Armor" type="RichTextLabel" parent="MoreUIPlaceVertical/ArmorControl/VBoxContainer"]
+[node name="More_UI_Armor" type="RichTextLabel" parent="MoreUIPlaceVertical/MoreUI_ArmorControl/VBoxContainer"]
 unique_name_in_owner = true
 margin_top = 8.0
 margin_right = 170.0
@@ -474,18 +486,19 @@ custom_fonts/normal_font = ExtResource( 1 )
 bbcode_enabled = true
 fit_content_height = true
 
-[node name="DodgeControl" type="Control" parent="MoreUIPlaceVertical"]
+[node name="MoreUI_DodgeControl" type="Control" parent="MoreUIPlaceVertical"]
+unique_name_in_owner = true
 margin_top = 528.0
 margin_right = 40.0
 margin_bottom = 568.0
 rect_min_size = Vector2( 40, 40 )
 
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/DodgeControl"]
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/MoreUI_DodgeControl"]
 anchor_right = 1.0
 anchor_bottom = 0.984
 margin_bottom = 2.048
 
-[node name="TextureRect" type="TextureRect" parent="MoreUIPlaceVertical/DodgeControl/AspectRatioContainer"]
+[node name="TextureRect" type="TextureRect" parent="MoreUIPlaceVertical/MoreUI_DodgeControl/AspectRatioContainer"]
 margin_top = 0.704
 margin_right = 40.0
 margin_bottom = 40.704
@@ -493,7 +506,7 @@ rect_pivot_offset = Vector2( 64, 64 )
 texture = ExtResource( 10 )
 expand = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/DodgeControl"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/MoreUI_DodgeControl"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 50.0
@@ -502,7 +515,7 @@ margin_right = 180.0
 margin_bottom = 3.0
 alignment = 1
 
-[node name="More_UI_Dodge" type="RichTextLabel" parent="MoreUIPlaceVertical/DodgeControl/VBoxContainer"]
+[node name="More_UI_Dodge" type="RichTextLabel" parent="MoreUIPlaceVertical/MoreUI_DodgeControl/VBoxContainer"]
 unique_name_in_owner = true
 margin_top = 8.0
 margin_right = 170.0
@@ -511,18 +524,19 @@ custom_fonts/normal_font = ExtResource( 1 )
 bbcode_enabled = true
 fit_content_height = true
 
-[node name="SpeedControl" type="Control" parent="MoreUIPlaceVertical"]
+[node name="MoreUI_SpeedControl" type="Control" parent="MoreUIPlaceVertical"]
+unique_name_in_owner = true
 margin_top = 572.0
 margin_right = 40.0
 margin_bottom = 612.0
 rect_min_size = Vector2( 40, 40 )
 
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/SpeedControl"]
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/MoreUI_SpeedControl"]
 anchor_right = 1.0
 anchor_bottom = 0.984
 margin_bottom = 2.048
 
-[node name="TextureRect" type="TextureRect" parent="MoreUIPlaceVertical/SpeedControl/AspectRatioContainer"]
+[node name="TextureRect" type="TextureRect" parent="MoreUIPlaceVertical/MoreUI_SpeedControl/AspectRatioContainer"]
 margin_top = 0.704
 margin_right = 40.0
 margin_bottom = 40.704
@@ -530,7 +544,7 @@ rect_pivot_offset = Vector2( 64, 64 )
 texture = ExtResource( 6 )
 expand = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/SpeedControl"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/MoreUI_SpeedControl"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 50.0
@@ -539,7 +553,7 @@ margin_right = 180.0
 margin_bottom = 3.0
 alignment = 1
 
-[node name="More_UI_Speed" type="RichTextLabel" parent="MoreUIPlaceVertical/SpeedControl/VBoxContainer"]
+[node name="More_UI_Speed" type="RichTextLabel" parent="MoreUIPlaceVertical/MoreUI_SpeedControl/VBoxContainer"]
 unique_name_in_owner = true
 margin_top = 8.0
 margin_right = 170.0
@@ -548,18 +562,19 @@ custom_fonts/normal_font = ExtResource( 1 )
 bbcode_enabled = true
 fit_content_height = true
 
-[node name="LuckControl" type="Control" parent="MoreUIPlaceVertical"]
+[node name="MoreUI_LuckControl" type="Control" parent="MoreUIPlaceVertical"]
+unique_name_in_owner = true
 margin_top = 616.0
 margin_right = 40.0
 margin_bottom = 656.0
 rect_min_size = Vector2( 40, 40 )
 
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/LuckControl"]
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/MoreUI_LuckControl"]
 anchor_right = 1.0
 anchor_bottom = 0.984
 margin_bottom = 2.048
 
-[node name="TextureRect" type="TextureRect" parent="MoreUIPlaceVertical/LuckControl/AspectRatioContainer"]
+[node name="TextureRect" type="TextureRect" parent="MoreUIPlaceVertical/MoreUI_LuckControl/AspectRatioContainer"]
 margin_top = 0.704
 margin_right = 40.0
 margin_bottom = 40.704
@@ -567,7 +582,7 @@ rect_pivot_offset = Vector2( 64, 64 )
 texture = ExtResource( 14 )
 expand = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/LuckControl"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/MoreUI_LuckControl"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 50.0
@@ -576,7 +591,7 @@ margin_right = 180.0
 margin_bottom = 3.0
 alignment = 1
 
-[node name="More_UI_Luck" type="RichTextLabel" parent="MoreUIPlaceVertical/LuckControl/VBoxContainer"]
+[node name="More_UI_Luck" type="RichTextLabel" parent="MoreUIPlaceVertical/MoreUI_LuckControl/VBoxContainer"]
 unique_name_in_owner = true
 margin_top = 8.0
 margin_right = 170.0
@@ -585,18 +600,19 @@ custom_fonts/normal_font = ExtResource( 1 )
 bbcode_enabled = true
 fit_content_height = true
 
-[node name="HarvestingControl" type="Control" parent="MoreUIPlaceVertical"]
+[node name="MoreUI_HarvestingControl" type="Control" parent="MoreUIPlaceVertical"]
+unique_name_in_owner = true
 margin_top = 660.0
 margin_right = 40.0
 margin_bottom = 700.0
 rect_min_size = Vector2( 40, 40 )
 
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/HarvestingControl"]
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MoreUIPlaceVertical/MoreUI_HarvestingControl"]
 anchor_right = 1.0
 anchor_bottom = 0.984
 margin_bottom = 2.048
 
-[node name="TextureRect" type="TextureRect" parent="MoreUIPlaceVertical/HarvestingControl/AspectRatioContainer"]
+[node name="TextureRect" type="TextureRect" parent="MoreUIPlaceVertical/MoreUI_HarvestingControl/AspectRatioContainer"]
 margin_top = 0.704
 margin_right = 40.0
 margin_bottom = 40.704
@@ -604,7 +620,7 @@ rect_pivot_offset = Vector2( 64, 64 )
 texture = ExtResource( 13 )
 expand = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/HarvestingControl"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MoreUIPlaceVertical/MoreUI_HarvestingControl"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 50.0
@@ -613,7 +629,7 @@ margin_right = 180.0
 margin_bottom = 3.0
 alignment = 1
 
-[node name="More_UI_Harvesting" type="RichTextLabel" parent="MoreUIPlaceVertical/HarvestingControl/VBoxContainer"]
+[node name="More_UI_Harvesting" type="RichTextLabel" parent="MoreUIPlaceVertical/MoreUI_HarvestingControl/VBoxContainer"]
 unique_name_in_owner = true
 margin_top = 8.0
 margin_right = 170.0
