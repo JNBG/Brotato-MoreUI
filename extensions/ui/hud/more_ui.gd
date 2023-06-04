@@ -109,12 +109,26 @@ func _ready()->void:
 	dodge_field_control = more_ui_container.get_node("%MoreUI_DodgeControl")
 	speed_field_control = more_ui_container.get_node("%MoreUI_SpeedControl")
 	luck_field_control = more_ui_container.get_node("%MoreUI_LuckControl")
-	harvesting_field_control = more_ui_container.get_node("%MoreUI_HarvestingControl")
+	harvesting_field_control = more_ui_container.get_node("%MoreUI_HarvestingControl")	
 	
+	_more_ui_timer = Timer.new()
+	add_child(_more_ui_timer)
+	_more_ui_timer.connect("timeout", self, "_update_stats_ui")
+	_more_ui_timer.set_one_shot(false) # Make sure it loops
+	_more_ui_timer.set_wait_time(0.5)
+	_more_ui_timer.start()
+	
+	_update_stats_ui()
 	
 	if (_whats_new_mode_enabled):
-		_toggle_control_visbility(false)
-		
+		_toggle_control_visbility(false)	
+	if (_whats_new_mode_enabled || _wave_increase_enabled):
+		var t = Timer.new()
+		t.set_wait_time(.2)
+		t.set_one_shot(true)
+		self.add_child(t)
+		t.start()
+		yield(t, "timeout")
 		inital_max_hp = floor(Utils.get_stat('stat_max_hp'))
 		inital_hp_regen = floor(Utils.get_stat('stat_hp_regeneration'))
 		inital_lifesteal = floor(Utils.get_stat('stat_lifesteal'))
@@ -131,15 +145,6 @@ func _ready()->void:
 		inital_speed = floor(Utils.get_stat('stat_speed'))
 		inital_luck = floor(Utils.get_stat('stat_luck'))
 		inital_harvesting = floor(Utils.get_stat('stat_harvesting'))
-	
-	_more_ui_timer = Timer.new()
-	add_child(_more_ui_timer)
-	_more_ui_timer.connect("timeout", self, "_update_stats_ui")
-	_more_ui_timer.set_one_shot(false) # Make sure it loops
-	_more_ui_timer.set_wait_time(0.5)
-	_more_ui_timer.start()
-	
-	_update_stats_ui()
 	
 	
 func _update_stats_ui():
@@ -176,12 +181,11 @@ func _update_stats_ui():
 			
 		var change = dodgeValue - inital_dodge
 		if (_wave_increase_enabled and change != 0):
-			dodgeString += " ("
+			dodgeString += " [color=" + _get_value_color(change) + "]("
 			if (change > 0):
-				dodgeString += "+" + str(change)
-			else:
-				dodgeString += str(change)
-			dodgeString += ") "
+				dodgeString += "+"
+			dodgeString += str(change)
+			dodgeString += ")[/color] "
 			
 		dodge_field.bbcode_text = "[color=" + _get_value_color(dodgeValue) + "]" + dodgeString + "[/color]"
 		if (_whats_new_mode_enabled && dodgeValue != inital_dodge):
@@ -195,12 +199,11 @@ func _update_stats_ui():
 			
 		var change = maxHPValue - inital_max_hp;
 		if (_wave_increase_enabled and change != 0):
-			maxHPString += " ("
+			maxHPString += " [color=" + _get_value_color(change) + "]("
 			if (change > 0):
-				maxHPString += "+" + str(change)
-			else:
-				maxHPString += str(change)
-			maxHPString += ") "
+				maxHPString += "+"
+			maxHPString += str(change)
+			maxHPString += ")[/color] "
 			
 		max_hp_field.bbcode_text = "[color=" + _get_value_color(maxHPValue) + "]" + maxHPString + "[/color]"
 		if (_whats_new_mode_enabled && maxHPValue != inital_max_hp):
@@ -212,12 +215,11 @@ func _update_single_field(field,stat_name,initial_value,control):
 		var output = str(value)
 		var change = value - initial_value;
 		if (_wave_increase_enabled and change != 0):
-			output += " ("
+			output += " [color=" + _get_value_color(change) + "]("
 			if (change > 0):
-				output += "+" + str(change)
-			else:
-				output += str(change)
-			output += ") "
+				output += "+"
+			output += str(change)
+			output += ")[/color] "
 		field.bbcode_text = "[color=" + _get_value_color(value) + "]" + output + "[/color]"
 		if (_whats_new_mode_enabled && value != initial_value):
 			control.visible = true
