@@ -8,6 +8,9 @@ var more_ui_container
 var _more_ui_timer = null
 var _whats_new_mode_enabled = false
 var _wave_increase_enabled = false
+var _right_side_enabled = false
+var _value_prefix = ""
+var _value_suffix = ""
 
 var max_hp_field: RichTextLabel
 var hp_regen_field: RichTextLabel
@@ -68,8 +71,11 @@ func _ready()->void:
 		more_ui_save_data.whats_new_mode_enabled = true
 	if not "wave_increase_enabled" in more_ui_save_data:
 		more_ui_save_data.wave_increase_enabled = false
+	if not "right_side_enabled" in more_ui_save_data:
+		more_ui_save_data.right_side_enabled = false
 	_whats_new_mode_enabled = more_ui_save_data.whats_new_mode_enabled
 	_wave_increase_enabled = more_ui_save_data.wave_increase_enabled
+	_right_side_enabled = more_ui_save_data.right_side_enabled
 
 	more_ui_container = preload("res://mods-unpacked/MincedMeatMole-MoreUI/ui/hud/more_ui.tscn").instance()
 	moreui_hud.margin_bottom = 0
@@ -109,16 +115,17 @@ func _ready()->void:
 	dodge_field_control = more_ui_container.get_node("%MoreUI_DodgeControl")
 	speed_field_control = more_ui_container.get_node("%MoreUI_SpeedControl")
 	luck_field_control = more_ui_container.get_node("%MoreUI_LuckControl")
-	harvesting_field_control = more_ui_container.get_node("%MoreUI_HarvestingControl")	
+	harvesting_field_control = more_ui_container.get_node("%MoreUI_HarvestingControl")
 	
+	if (_right_side_enabled):
+		_align_ui_to_right()
+		
 	_more_ui_timer = Timer.new()
 	add_child(_more_ui_timer)
 	_more_ui_timer.connect("timeout", self, "_update_stats_ui")
 	_more_ui_timer.set_one_shot(false) # Make sure it loops
 	_more_ui_timer.set_wait_time(0.5)
 	_more_ui_timer.start()
-	
-	_update_stats_ui()
 	
 	if (_whats_new_mode_enabled):
 		_toggle_control_visbility(false)	
@@ -145,6 +152,8 @@ func _ready()->void:
 		inital_speed = floor(Utils.get_stat('stat_speed'))
 		inital_luck = floor(Utils.get_stat('stat_luck'))
 		inital_harvesting = floor(Utils.get_stat('stat_harvesting'))
+	
+	_update_stats_ui()
 	
 	
 func _update_stats_ui():
@@ -187,7 +196,7 @@ func _update_stats_ui():
 			dodgeString += str(change)
 			dodgeString += ")[/color] "
 			
-		dodge_field.bbcode_text = "[color=" + _get_value_color(dodgeValue) + "]" + dodgeString + "[/color]"
+		dodge_field.bbcode_text = _value_prefix + "[color=" + _get_value_color(dodgeValue) + "]" + dodgeString + "[/color]" + _value_suffix
 		if (_whats_new_mode_enabled && dodgeValue != inital_dodge):
 			dodge_field_control.visible = true
 	if max_hp_field != null:
@@ -205,7 +214,7 @@ func _update_stats_ui():
 			maxHPString += str(change)
 			maxHPString += ")[/color] "
 			
-		max_hp_field.bbcode_text = "[color=" + _get_value_color(maxHPValue) + "]" + maxHPString + "[/color]"
+		max_hp_field.bbcode_text = _value_prefix + "[color=" + _get_value_color(maxHPValue) + "]" + maxHPString + "[/color]" + _value_suffix
 		if (_whats_new_mode_enabled && maxHPValue != inital_max_hp):
 			max_hp_field_control.visible = true
 
@@ -220,7 +229,7 @@ func _update_single_field(field,stat_name,initial_value,control):
 				output += "+"
 			output += str(change)
 			output += ")[/color] "
-		field.bbcode_text = "[color=" + _get_value_color(value) + "]" + output + "[/color]"
+		field.bbcode_text = _value_prefix + "[color=" + _get_value_color(value) + "]" + output  + "[/color]" + _value_suffix
 		if (_whats_new_mode_enabled && value != initial_value):
 			control.visible = true
 
@@ -237,6 +246,8 @@ func _on_more_ui_setting_changed(setting_name:String, value):
 		_set_whats_new_mode(value)
 	if setting_name == "wave_increase_enabled" and value is bool:
 		_set_wave_increase_enabled(value)
+	if setting_name == "right_side_enabled" and value is bool:
+		_set_right_side_enabled(value)
 
 
 func _set_whats_new_mode(mode_enabled:bool):
@@ -248,6 +259,14 @@ func _set_whats_new_mode(mode_enabled:bool):
 		
 func _set_wave_increase_enabled(value:bool):
 	_wave_increase_enabled = value
+
+func _set_right_side_enabled(value:bool):
+	_right_side_enabled = value
+	if (_right_side_enabled):
+		_align_ui_to_right()
+	else:
+		_align_ui_to_left()
+	_update_stats_ui()
 
 func _toggle_control_visbility(onoff:bool):
 	if max_hp_field_control != null:
@@ -295,9 +314,68 @@ func _more_ui_load_data():
 	if not file.file_exists(MORE_UI_SAVE_FILE):
 		more_ui_save_data = {
 			"whats_new_mode_enabled": true,
-			"wave_increase_enabled": false
+			"wave_increase_enabled": false,
+			"right_side_enabled": false
 		}
 		_more_ui_save_data()
 	file.open(MORE_UI_SAVE_FILE, File.READ)
 	more_ui_save_data = file.get_var()
 	file.close()
+
+func _align_element_to_right(element):
+	element.margin_left = -180
+	element.margin_right = -50
+	
+func _align_element_to_left(element):
+	element.margin_left = 50
+	element.margin_right = 180
+	
+func _align_ui_to_right():
+	for mod in ModLoader.mod_load_order:
+		var mod_name:String = mod.dir_name
+		if (mod_name == "otDan-WaveTimer"):
+			more_ui_container.get_node("%MoreUI_otdanwavetimerspacer").visible = true
+			
+		
+	more_ui_container.alignment = 2
+	_value_prefix = "[right]"
+	_value_suffix = "[/right]"
+	_align_element_to_right(max_hp_field_control.get_node("VBoxContainer"))
+	_align_element_to_right(hp_regen_field_control.get_node("VBoxContainer"))
+	_align_element_to_right(lifesteal_field_control.get_node("VBoxContainer"))
+	_align_element_to_right(damage_field_control.get_node("VBoxContainer"))
+	_align_element_to_right(melee_damage_field_control.get_node("VBoxContainer"))
+	_align_element_to_right(ranged_damage_field_control.get_node("VBoxContainer"))
+	_align_element_to_right(elemental_damage_field_control.get_node("VBoxContainer"))
+	_align_element_to_right(attack_speed_field_control.get_node("VBoxContainer"))
+	_align_element_to_right(crit_chance_field_control.get_node("VBoxContainer"))
+	_align_element_to_right(engineering_field_control.get_node("VBoxContainer"))
+	_align_element_to_right(range_field_control.get_node("VBoxContainer"))
+	_align_element_to_right(armor_field_control.get_node("VBoxContainer"))
+	_align_element_to_right(dodge_field_control.get_node("VBoxContainer"))
+	_align_element_to_right(speed_field_control.get_node("VBoxContainer"))
+	_align_element_to_right(luck_field_control.get_node("VBoxContainer"))
+	_align_element_to_right(harvesting_field_control.get_node("VBoxContainer"))
+	
+func _align_ui_to_left():
+	more_ui_container.get_node("%MoreUI_otdanwavetimerspacer").visible = false
+	more_ui_container.alignment = 0
+	_value_prefix = ""
+	_value_suffix = ""
+	_align_element_to_left(max_hp_field_control.get_node("VBoxContainer"))
+	_align_element_to_left(hp_regen_field_control.get_node("VBoxContainer"))
+	_align_element_to_left(lifesteal_field_control.get_node("VBoxContainer"))
+	_align_element_to_left(damage_field_control.get_node("VBoxContainer"))
+	_align_element_to_left(melee_damage_field_control.get_node("VBoxContainer"))
+	_align_element_to_left(ranged_damage_field_control.get_node("VBoxContainer"))
+	_align_element_to_left(elemental_damage_field_control.get_node("VBoxContainer"))
+	_align_element_to_left(attack_speed_field_control.get_node("VBoxContainer"))
+	_align_element_to_left(crit_chance_field_control.get_node("VBoxContainer"))
+	_align_element_to_left(engineering_field_control.get_node("VBoxContainer"))
+	_align_element_to_left(range_field_control.get_node("VBoxContainer"))
+	_align_element_to_left(armor_field_control.get_node("VBoxContainer"))
+	_align_element_to_left(dodge_field_control.get_node("VBoxContainer"))
+	_align_element_to_left(speed_field_control.get_node("VBoxContainer"))
+	_align_element_to_left(luck_field_control.get_node("VBoxContainer"))
+	_align_element_to_left(harvesting_field_control.get_node("VBoxContainer"))
+	

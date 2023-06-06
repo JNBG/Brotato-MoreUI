@@ -1,7 +1,7 @@
 {
 	"name": "MoreUI",
 	"namespace": "MincedMeatMole",
-	"version_number": "1.0.6",
+	"version_number": "1.0.7",
 	"description": "This Mod adds a UI displaying your Stats during a Wave",
 	"website_url": "https://github.com/JNBG/Brotato-MoreUI",
 	"dependencies": [],

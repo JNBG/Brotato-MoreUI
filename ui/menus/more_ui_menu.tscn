@@ -13,29 +13,35 @@ alignment = 1
 script = ExtResource( 2 )
 
 [node name="Label" type="Label" parent="."]
-margin_top = 385.0
+margin_top = 340.0
 margin_right = 1920.0
-margin_bottom = 430.0
+margin_bottom = 385.0
 text = "MORE_UI_OPTIONS"
 align = 1
 
 [node name="WhatsNewModeEnabled" type="CheckButton" parent="."]
-margin_top = 450.0
+margin_top = 405.0
 margin_right = 1920.0
-margin_bottom = 520.0
+margin_bottom = 475.0
 text = "MORE_UI_WHATS_NEW_MODE"
 
 [node name="WaveIncreaseEnabled" type="CheckButton" parent="."]
-margin_top = 540.0
+margin_top = 495.0
 margin_right = 1920.0
-margin_bottom = 610.0
+margin_bottom = 565.0
 text = "MORE_UI_SHOW_WAVE_INCREASE"
+
+[node name="RightSide" type="CheckButton" parent="."]
+margin_top = 585.0
+margin_right = 1920.0
+margin_bottom = 655.0
+text = "MORE_UI_ALIGN_RIGHT"
 
 [node name="BackButton" type="Button" parent="."]
 margin_left = 826.0
-margin_top = 630.0
+margin_top = 675.0
 margin_right = 1093.0
-margin_bottom = 695.0
+margin_bottom = 740.0
 size_flags_horizontal = 4
 text = "MENU_BACK"
 script = ExtResource( 3 )
