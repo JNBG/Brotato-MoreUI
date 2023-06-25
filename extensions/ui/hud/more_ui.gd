@@ -177,7 +177,7 @@ func _update_stats_ui():
 	_update_single_field(engineering_field, 'stat_engineering', inital_engineering, engineering_field_control)
 	_update_single_field(range_field, 'stat_range', inital_range, range_field_control)
 	_update_single_field(armor_field, 'stat_armor', inital_armor, armor_field_control)
-	_update_single_field(speed_field, 'stat_speed', inital_speed, speed_field_control)
+#	_update_single_field(speed_field, 'stat_speed', inital_speed, speed_field_control)
 	_update_single_field(luck_field, 'stat_luck', inital_luck, luck_field_control)
 	_update_single_field(harvesting_field, 'stat_harvesting', inital_harvesting, harvesting_field_control)
 	
@@ -217,6 +217,25 @@ func _update_stats_ui():
 		max_hp_field.bbcode_text = _value_prefix + "[color=" + _get_value_color(maxHPValue) + "]" + maxHPString + "[/color]" + _value_suffix
 		if (_whats_new_mode_enabled && maxHPValue != inital_max_hp):
 			max_hp_field_control.visible = true
+			
+	if speed_field != null:
+		var speedValue = floor(Utils.get_stat('stat_speed'))
+		var maxSpeed = Utils.get_stat('speed_cap')
+		var speedString = str(speedValue);
+		if (speedValue >= maxSpeed):
+			speedString += ' | ' + str(maxSpeed)
+			
+		var change = speedValue - inital_speed
+		if (_wave_increase_enabled and change != 0):
+			speedString += " [color=" + _get_value_color(change) + "]("
+			if (change > 0):
+				speedString += "+"
+			speedString += str(change)
+			speedString += ")[/color] "
+			
+		speed_field.bbcode_text = _value_prefix + "[color=" + _get_value_color(speedValue) + "]" + speedString + "[/color]" + _value_suffix
+		if (_whats_new_mode_enabled && speedValue != inital_speed):
+			speed_field_control.visible = true
 
 func _update_single_field(field,stat_name,initial_value,control):
 	if field != null:
@@ -331,11 +350,8 @@ func _align_element_to_left(element):
 	element.margin_right = 180
 	
 func _align_ui_to_right():
-	for mod in ModLoader.mod_load_order:
-		var mod_name:String = mod.dir_name
-		if (mod_name == "otDan-WaveTimer"):
-			more_ui_container.get_node("%MoreUI_otdanwavetimerspacer").visible = true
-			
+	if (ModLoaderMod.is_mod_loaded('otDan-WaveTimer')):
+		more_ui_container.get_node("%MoreUI_otdanwavetimerspacer").visible = true
 		
 	more_ui_container.alignment = 2
 	_value_prefix = "[right]"
