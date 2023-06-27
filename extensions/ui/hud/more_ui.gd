@@ -133,6 +133,8 @@ func _ready()->void:
 		
 	if not _show_trees_enabled:
 		trees_field_control.visible = false
+	else:
+		trees_field.bbcode_text = _value_prefix + "..." + _value_suffix
 		
 	_more_ui_timer = Timer.new()
 	add_child(_more_ui_timer)
@@ -262,7 +264,8 @@ func _update_stats_ui():
 			
 	if trees_field != null:
 		var treeValue = RunData.current_living_trees
-		trees_field.bbcode_text = _value_prefix + "[color=" + _get_value_color_diff(treeValue, max_trees) + "]" + str(treeValue) + "[/color] | ([color=#ff0000]" + str(min_trees) + "[/color] - [color=#00ff00]" + str(max_trees) + "[/color])" + _value_suffix
+		if (max_trees != 0):
+			trees_field.bbcode_text = _value_prefix + "[color=#fff]" + str(treeValue) + "[/color] | ([color=#ff0000]" + str(min_trees) + "[/color] - [color=#00ff00]" + str(max_trees) + "[/color])" + _value_suffix
 		if (_show_trees_enabled):
 			if (_whats_new_mode_enabled && treeValue != inital_trees):
 				trees_field_control.visible = true
@@ -290,12 +293,6 @@ func _get_value_color(value):
 		return "#ff0000"
 	else:
 		return "#fff"
-		
-func _get_value_color_diff(value, compare):
-	if (value >= compare):
-		return "#00ff00"
-	else:
-		return "#ff0000"
 		
 func _on_more_ui_setting_changed(setting_name:String, value):
 	if setting_name == "whats_new_mode_enabled" and value is bool:
