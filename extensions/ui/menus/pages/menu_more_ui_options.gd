@@ -10,6 +10,7 @@ onready var back_button = $BackButton
 onready var check_whats_new = $WhatsNewModeEnabled
 onready var check_wave_increase = $WaveIncreaseEnabled
 onready var check_right_side = $RightSide
+onready var check_trees_enabled = $ShowTrees
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -33,6 +34,10 @@ func init():
 		more_ui_save_data.right_side_enabled = false
 	check_right_side.pressed = more_ui_save_data.right_side_enabled
 	check_right_side.connect("toggled", self, "moreui_signal_setting_changed", ["right_side_enabled"])
+	if not "trees_enabled" in more_ui_save_data:
+		more_ui_save_data.trees_enabled = false
+	check_trees_enabled.pressed = more_ui_save_data.trees_enabled
+	check_trees_enabled.connect("toggled", self, "moreui_signal_setting_changed", ["trees_enabled"])
 
 func _more_ui_save_data():
 	var file = File.new()
@@ -47,7 +52,8 @@ func _more_ui_load_data():
 		more_ui_save_data = {
 			"whats_new_mode_enabled": true,
 			"wave_increase_enabled": false,
-			"right_side_enabled": false
+			"right_side_enabled": false,
+			"trees_enabled": false
 		}
 		_more_ui_save_data()
 	file.open(MORE_UI_SAVE_FILE, File.READ)

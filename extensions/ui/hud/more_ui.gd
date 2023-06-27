@@ -9,6 +9,7 @@ var _more_ui_timer = null
 var _whats_new_mode_enabled = false
 var _wave_increase_enabled = false
 var _right_side_enabled = false
+var _show_trees_enabled = false
 var _value_prefix = ""
 var _value_suffix = ""
 
@@ -28,6 +29,7 @@ var dodge_field: RichTextLabel
 var speed_field: RichTextLabel
 var luck_field: RichTextLabel
 var harvesting_field: RichTextLabel
+var trees_field: RichTextLabel
 
 var max_hp_field_control: Control
 var hp_regen_field_control: Control
@@ -45,6 +47,7 @@ var dodge_field_control: Control
 var speed_field_control: Control
 var luck_field_control: Control
 var harvesting_field_control: Control
+var trees_field_control: Control
 
 var inital_max_hp: int
 var inital_hp_regen: int
@@ -62,6 +65,9 @@ var inital_dodge: int
 var inital_speed: int
 var inital_luck: int
 var inital_harvesting: int
+var inital_trees: int
+var min_trees: int
+var max_trees: int
 		
 func _ready()->void:
 	_more_ui_load_data()
@@ -73,9 +79,12 @@ func _ready()->void:
 		more_ui_save_data.wave_increase_enabled = false
 	if not "right_side_enabled" in more_ui_save_data:
 		more_ui_save_data.right_side_enabled = false
+	if not "trees_enabled" in more_ui_save_data:
+		more_ui_save_data.trees_enabled = false
 	_whats_new_mode_enabled = more_ui_save_data.whats_new_mode_enabled
 	_wave_increase_enabled = more_ui_save_data.wave_increase_enabled
 	_right_side_enabled = more_ui_save_data.right_side_enabled
+	_show_trees_enabled = more_ui_save_data.trees_enabled
 
 	more_ui_container = preload("res://mods-unpacked/MincedMeatMole-MoreUI/ui/hud/more_ui.tscn").instance()
 	moreui_hud.margin_bottom = 0
@@ -99,6 +108,7 @@ func _ready()->void:
 	speed_field = more_ui_container.get_node("%More_UI_Speed")
 	luck_field = more_ui_container.get_node("%More_UI_Luck")
 	harvesting_field = more_ui_container.get_node("%More_UI_Harvesting")
+	trees_field = more_ui_container.get_node("%More_UI_Trees")
 
 	max_hp_field_control = more_ui_container.get_node("%MoreUI_MaxHPControl")
 	hp_regen_field_control = more_ui_container.get_node("%MoreUI_HPRegenControl")
@@ -116,9 +126,13 @@ func _ready()->void:
 	speed_field_control = more_ui_container.get_node("%MoreUI_SpeedControl")
 	luck_field_control = more_ui_container.get_node("%MoreUI_LuckControl")
 	harvesting_field_control = more_ui_container.get_node("%MoreUI_HarvestingControl")
+	trees_field_control = more_ui_container.get_node("%MoreUI_TreeControl")
 	
 	if (_right_side_enabled):
 		_align_ui_to_right()
+		
+	if not _show_trees_enabled:
+		trees_field_control.visible = false
 		
 	_more_ui_timer = Timer.new()
 	add_child(_more_ui_timer)
@@ -152,8 +166,18 @@ func _ready()->void:
 		inital_speed = floor(Utils.get_stat('stat_speed'))
 		inital_luck = floor(Utils.get_stat('stat_luck'))
 		inital_harvesting = floor(Utils.get_stat('stat_harvesting'))
+		inital_trees = 0
 	
 	_update_stats_ui()
+	
+	var possible_chances = ceil(wave_timer.wait_time / 10) - 1
+	var min_nb = (1 + RunData.effects["trees"])
+	var max_nb = (2 + RunData.effects["trees"])
+	for i in possible_chances:
+		var min_total_chance:float = min_nb * 0.33
+		var max_total_chance:float = max_nb * 0.33
+		min_trees += floor(min_total_chance)
+		max_trees += floor(max_total_chance) + 1
 	
 	
 func _update_stats_ui():
@@ -177,7 +201,6 @@ func _update_stats_ui():
 	_update_single_field(engineering_field, 'stat_engineering', inital_engineering, engineering_field_control)
 	_update_single_field(range_field, 'stat_range', inital_range, range_field_control)
 	_update_single_field(armor_field, 'stat_armor', inital_armor, armor_field_control)
-#	_update_single_field(speed_field, 'stat_speed', inital_speed, speed_field_control)
 	_update_single_field(luck_field, 'stat_luck', inital_luck, luck_field_control)
 	_update_single_field(harvesting_field, 'stat_harvesting', inital_harvesting, harvesting_field_control)
 	
@@ -236,6 +259,14 @@ func _update_stats_ui():
 		speed_field.bbcode_text = _value_prefix + "[color=" + _get_value_color(speedValue) + "]" + speedString + "[/color]" + _value_suffix
 		if (_whats_new_mode_enabled && speedValue != inital_speed):
 			speed_field_control.visible = true
+			
+	if trees_field != null:
+		var treeValue = RunData.current_living_trees
+		trees_field.bbcode_text = _value_prefix + "[color=" + _get_value_color_diff(treeValue, max_trees) + "]" + str(treeValue) + "[/color] | ([color=#ff0000]" + str(min_trees) + "[/color] - [color=#00ff00]" + str(max_trees) + "[/color])" + _value_suffix
+		if (_show_trees_enabled):
+			if (_whats_new_mode_enabled && treeValue != inital_trees):
+				trees_field_control.visible = true
+		
 
 func _update_single_field(field,stat_name,initial_value,control):
 	if field != null:
@@ -260,6 +291,12 @@ func _get_value_color(value):
 	else:
 		return "#fff"
 		
+func _get_value_color_diff(value, compare):
+	if (value >= compare):
+		return "#00ff00"
+	else:
+		return "#ff0000"
+		
 func _on_more_ui_setting_changed(setting_name:String, value):
 	if setting_name == "whats_new_mode_enabled" and value is bool:
 		_set_whats_new_mode(value)
@@ -267,6 +304,8 @@ func _on_more_ui_setting_changed(setting_name:String, value):
 		_set_wave_increase_enabled(value)
 	if setting_name == "right_side_enabled" and value is bool:
 		_set_right_side_enabled(value)
+	if setting_name == "trees_enabled" and value is bool:
+		_set_trees_enabled(value)
 
 
 func _set_whats_new_mode(mode_enabled:bool):
@@ -286,6 +325,13 @@ func _set_right_side_enabled(value:bool):
 	else:
 		_align_ui_to_left()
 	_update_stats_ui()
+
+func _set_trees_enabled(value:bool):
+	_show_trees_enabled = value
+	if (_show_trees_enabled):
+		trees_field_control.visible = true
+	else:
+		trees_field_control.visible = false
 
 func _toggle_control_visbility(onoff:bool):
 	if max_hp_field_control != null:
@@ -320,6 +366,11 @@ func _toggle_control_visbility(onoff:bool):
 		luck_field_control.visible = onoff
 	if harvesting_field_control != null:
 		harvesting_field_control.visible = onoff
+	if trees_field_control != null:
+		if _show_trees_enabled:
+			trees_field_control.visible = onoff
+		else:
+			trees_field_control.visible = false
 
 func _more_ui_save_data():
 	var file = File.new()
@@ -334,7 +385,8 @@ func _more_ui_load_data():
 		more_ui_save_data = {
 			"whats_new_mode_enabled": true,
 			"wave_increase_enabled": false,
-			"right_side_enabled": false
+			"right_side_enabled": false,
+			"trees_enabled": false
 		}
 		_more_ui_save_data()
 	file.open(MORE_UI_SAVE_FILE, File.READ)
@@ -372,6 +424,7 @@ func _align_ui_to_right():
 	_align_element_to_right(speed_field_control.get_node("VBoxContainer"))
 	_align_element_to_right(luck_field_control.get_node("VBoxContainer"))
 	_align_element_to_right(harvesting_field_control.get_node("VBoxContainer"))
+	_align_element_to_right(trees_field_control.get_node("VBoxContainer"))
 	
 func _align_ui_to_left():
 	more_ui_container.get_node("%MoreUI_otdanwavetimerspacer").visible = false
@@ -394,4 +447,5 @@ func _align_ui_to_left():
 	_align_element_to_left(speed_field_control.get_node("VBoxContainer"))
 	_align_element_to_left(luck_field_control.get_node("VBoxContainer"))
 	_align_element_to_left(harvesting_field_control.get_node("VBoxContainer"))
+	_align_element_to_left(trees_field_control.get_node("VBoxContainer"))
 	
