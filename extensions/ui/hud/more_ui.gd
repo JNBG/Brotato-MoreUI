@@ -10,6 +10,7 @@ var _whats_new_mode_enabled = false
 var _wave_increase_enabled = false
 var _right_side_enabled = false
 var _show_trees_enabled = false
+var _revamped_icons = false
 var _value_prefix = ""
 var _value_suffix = ""
 
@@ -85,6 +86,7 @@ func _ready()->void:
 	_wave_increase_enabled = more_ui_save_data.wave_increase_enabled
 	_right_side_enabled = more_ui_save_data.right_side_enabled
 	_show_trees_enabled = more_ui_save_data.trees_enabled
+	_revamped_icons = more_ui_save_data.revamped_icons
 
 	more_ui_container = preload("res://mods-unpacked/MincedMeatMole-MoreUI/ui/hud/more_ui.tscn").instance()
 	moreui_hud.margin_bottom = 0
@@ -135,6 +137,11 @@ func _ready()->void:
 		trees_field_control.visible = false
 	else:
 		trees_field.bbcode_text = _value_prefix + "..." + _value_suffix
+	
+	if ModLoaderMod.is_mod_loaded('monoSDE-RevampedIcons') and _revamped_icons:
+		_set_revamped_icons(true)
+	else:
+		_set_revamped_icons(false)
 		
 	_more_ui_timer = Timer.new()
 	add_child(_more_ui_timer)
@@ -303,6 +310,8 @@ func _on_more_ui_setting_changed(setting_name:String, value):
 		_set_right_side_enabled(value)
 	if setting_name == "trees_enabled" and value is bool:
 		_set_trees_enabled(value)
+	if setting_name == "revamped_icons" and value is bool:
+		_set_revamped_icons(value)
 
 
 func _set_whats_new_mode(mode_enabled:bool):
@@ -329,6 +338,78 @@ func _set_trees_enabled(value:bool):
 		trees_field_control.visible = true
 	else:
 		trees_field_control.visible = false
+		
+func _set_revamped_icons(value:bool):
+	_revamped_icons = value
+	if (ModLoaderMod.is_mod_loaded('monoSDE-RevampedIcons')):
+		if (_revamped_icons):
+			var monoMaxHp = load("res://mods-unpacked/monoSDE-RevampedIcons/overwrites/items/upgrades/health/monoSDE_health.png")
+			var monoHpRegen = load("res://mods-unpacked/monoSDE-RevampedIcons/overwrites/items/upgrades/health_regeneration/monoSDE_health_regen.png")
+			var monoLifeSteal = load("res://mods-unpacked/monoSDE-RevampedIcons/overwrites/items/upgrades/lifesteal/monoSDE_lifesteal.png")
+			var monoDamage = load("res://mods-unpacked/monoSDE-RevampedIcons/overwrites/items/upgrades/percent_damage/monoSDE_percent_dmg.png")
+			var monoMeleeDmg = load("res://mods-unpacked/monoSDE-RevampedIcons/overwrites/items/upgrades/melee_damage/monoSDE_melee_dmg.png")
+			var monoRangedDmg = load("res://mods-unpacked/monoSDE-RevampedIcons/overwrites/items/upgrades/ranged_damage/monoSDE_ranged_dmg.png")
+			var monoEleDmg = load("res://mods-unpacked/monoSDE-RevampedIcons/overwrites/items/upgrades/elemental_damage/monoSDE_elemental_dmg.png")
+			var monoAtckSpeed = load("res://mods-unpacked/monoSDE-RevampedIcons/overwrites/items/upgrades/attack_speed/monoSDE_attack_speed.png")
+			var monoCritChance = load("res://mods-unpacked/monoSDE-RevampedIcons/overwrites/items/upgrades/crit_chance/monoSDE_crit_chance.png")
+			var monoEngineering = load("res://mods-unpacked/monoSDE-RevampedIcons/overwrites/items/upgrades/engineering/monoSDE_engineering.png")
+			var monoRange = load("res://mods-unpacked/monoSDE-RevampedIcons/overwrites/items/upgrades/range/monoSDE_range.png")
+			var monoArmor = load("res://mods-unpacked/monoSDE-RevampedIcons/overwrites/items/upgrades/armor/monoSDE_flat_dmg_reduction.png")
+			var monoDodge = load("res://mods-unpacked/monoSDE-RevampedIcons/overwrites/items/upgrades/dodge/monoSDE_dodge.png")
+			var monoSpeed = load("res://mods-unpacked/monoSDE-RevampedIcons/overwrites/items/upgrades/speed/monoSDE_speed.png")
+			var monoLuck = load("res://mods-unpacked/monoSDE-RevampedIcons/overwrites/items/upgrades/luck/monoSDE_consumable_drop_chance.png")
+			var monoHarvesting = load("res://mods-unpacked/monoSDE-RevampedIcons/overwrites/items/upgrades/harvesting/monoSDE_harvesting.png")
+			
+			if monoMaxHp != null:
+				max_hp_field_control.get_node("AspectRatioContainer/TextureRect").texture = monoMaxHp
+			if monoHpRegen != null:
+				hp_regen_field_control.get_node("AspectRatioContainer/TextureRect").texture = monoHpRegen
+			if monoLifeSteal != null:
+				lifesteal_field_control.get_node("AspectRatioContainer/TextureRect").texture = monoLifeSteal
+			if monoDamage != null:
+				damage_field_control.get_node("AspectRatioContainer/TextureRect").texture = monoDamage
+			if monoMeleeDmg != null:
+				melee_damage_field_control.get_node("AspectRatioContainer/TextureRect").texture = monoMeleeDmg
+			if monoRangedDmg != null:
+				ranged_damage_field_control.get_node("AspectRatioContainer/TextureRect").texture = monoRangedDmg
+			if monoEleDmg != null:
+				elemental_damage_field_control.get_node("AspectRatioContainer/TextureRect").texture = monoEleDmg
+			if monoAtckSpeed != null:
+				attack_speed_field_control.get_node("AspectRatioContainer/TextureRect").texture = monoAtckSpeed
+			if monoCritChance != null:
+				crit_chance_field_control.get_node("AspectRatioContainer/TextureRect").texture = monoCritChance
+			if monoEngineering != null:
+				engineering_field_control.get_node("AspectRatioContainer/TextureRect").texture = monoEngineering
+			if monoRange != null:
+				range_field_control.get_node("AspectRatioContainer/TextureRect").texture = monoRange
+			if monoArmor != null:
+				armor_field_control.get_node("AspectRatioContainer/TextureRect").texture = monoArmor
+			if monoDodge != null:
+				dodge_field_control.get_node("AspectRatioContainer/TextureRect").texture = monoDodge
+			if monoSpeed != null:
+				speed_field_control.get_node("AspectRatioContainer/TextureRect").texture = monoSpeed
+			if monoLuck != null:
+				luck_field_control.get_node("AspectRatioContainer/TextureRect").texture = monoLuck
+			if monoHarvesting != null:
+				harvesting_field_control.get_node("AspectRatioContainer/TextureRect").texture = monoHarvesting		
+		else:
+			max_hp_field_control.get_node("AspectRatioContainer/TextureRect").texture = load("res://mods-unpacked/MincedMeatMole-MoreUI/ui/hud/moreui_max_hp.png")
+			hp_regen_field_control.get_node("AspectRatioContainer/TextureRect").texture = load("res://mods-unpacked/MincedMeatMole-MoreUI/ui/hud/moreui_hp_regeneration.png")
+			lifesteal_field_control.get_node("AspectRatioContainer/TextureRect").texture = load("res://mods-unpacked/MincedMeatMole-MoreUI/ui/hud/moreui_lifesteal.png")
+			damage_field_control.get_node("AspectRatioContainer/TextureRect").texture = load("res://mods-unpacked/MincedMeatMole-MoreUI/ui/hud/moreui_percent_damage.png")
+			melee_damage_field_control.get_node("AspectRatioContainer/TextureRect").texture = load("res://mods-unpacked/MincedMeatMole-MoreUI/ui/hud/moreui_melee_damage.png")
+			ranged_damage_field_control.get_node("AspectRatioContainer/TextureRect").texture = load("res://mods-unpacked/MincedMeatMole-MoreUI/ui/hud/moreui_ranged_damage.png")
+			elemental_damage_field_control.get_node("AspectRatioContainer/TextureRect").texture = load("res://mods-unpacked/MincedMeatMole-MoreUI/ui/hud/moreui_elemental_damage.png")
+			attack_speed_field_control.get_node("AspectRatioContainer/TextureRect").texture = load("res://mods-unpacked/MincedMeatMole-MoreUI/ui/hud/moreui_attack_speed.png")
+			crit_chance_field_control.get_node("AspectRatioContainer/TextureRect").texture = load("res://mods-unpacked/MincedMeatMole-MoreUI/ui/hud/moreui_crit_chance.png")
+			engineering_field_control.get_node("AspectRatioContainer/TextureRect").texture = load("res://mods-unpacked/MincedMeatMole-MoreUI/ui/hud/moreui_engineering.png")
+			range_field_control.get_node("AspectRatioContainer/TextureRect").texture = load("res://mods-unpacked/MincedMeatMole-MoreUI/ui/hud/moreui_range.png")
+			armor_field_control.get_node("AspectRatioContainer/TextureRect").texture = load("res://mods-unpacked/MincedMeatMole-MoreUI/ui/hud/moreui_armor.png")
+			dodge_field_control.get_node("AspectRatioContainer/TextureRect").texture = load("res://mods-unpacked/MincedMeatMole-MoreUI/ui/hud/moreui_dodge.png")
+			speed_field_control.get_node("AspectRatioContainer/TextureRect").texture = load("res://mods-unpacked/MincedMeatMole-MoreUI/ui/hud/moreui_speed.png")
+			luck_field_control.get_node("AspectRatioContainer/TextureRect").texture = load("res://mods-unpacked/MincedMeatMole-MoreUI/ui/hud/moreui_luck.png")
+			harvesting_field_control.get_node("AspectRatioContainer/TextureRect").texture = load("res://mods-unpacked/MincedMeatMole-MoreUI/ui/hud/moreui_harvesting.png")
+			
 
 func _toggle_control_visbility(onoff:bool):
 	if max_hp_field_control != null:
@@ -383,7 +464,8 @@ func _more_ui_load_data():
 			"whats_new_mode_enabled": true,
 			"wave_increase_enabled": false,
 			"right_side_enabled": false,
-			"trees_enabled": false
+			"trees_enabled": false,
+			"revamped_icons": false
 		}
 		_more_ui_save_data()
 	file.open(MORE_UI_SAVE_FILE, File.READ)

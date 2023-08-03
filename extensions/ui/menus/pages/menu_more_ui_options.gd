@@ -11,6 +11,7 @@ onready var check_whats_new = $WhatsNewModeEnabled
 onready var check_wave_increase = $WaveIncreaseEnabled
 onready var check_right_side = $RightSide
 onready var check_trees_enabled = $ShowTrees
+onready var check_revamped_icons = $UseRevampedIcons
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -22,6 +23,10 @@ func init():
 	$BackButton.grab_focus()
 	
 	_more_ui_load_data()
+	if (ModLoaderMod.is_mod_loaded('monoSDE-RevampedIcons')):
+		check_revamped_icons.visible = true
+	else:
+		check_revamped_icons.visible = false
 	if not "whats_new_mode_enabled" in more_ui_save_data:
 		more_ui_save_data.whats_new_mode_enabled = true
 	check_whats_new.pressed = more_ui_save_data.whats_new_mode_enabled
@@ -38,6 +43,10 @@ func init():
 		more_ui_save_data.trees_enabled = false
 	check_trees_enabled.pressed = more_ui_save_data.trees_enabled
 	check_trees_enabled.connect("toggled", self, "moreui_signal_setting_changed", ["trees_enabled"])
+	if not "revamped_icons" in more_ui_save_data:
+		more_ui_save_data.revamped_icons = false
+	check_revamped_icons.pressed = more_ui_save_data.revamped_icons
+	check_revamped_icons.connect("toggled", self, "moreui_signal_setting_changed", ["revamped_icons"])
 
 func _more_ui_save_data():
 	var file = File.new()
@@ -53,7 +62,8 @@ func _more_ui_load_data():
 			"whats_new_mode_enabled": true,
 			"wave_increase_enabled": false,
 			"right_side_enabled": false,
-			"trees_enabled": false
+			"trees_enabled": false,
+			"revamped_icons": false,
 		}
 		_more_ui_save_data()
 	file.open(MORE_UI_SAVE_FILE, File.READ)
