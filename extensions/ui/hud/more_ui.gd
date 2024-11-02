@@ -184,8 +184,12 @@ func _ready()->void:
 	_update_stats_ui()
 	
 	var possible_chances = ceil(wave_timer.wait_time / 10) - 1
-	var min_nb = (1 + RunData.effects["trees"])
-	var max_nb = (2 + RunData.effects["trees"])
+	
+	# Todo: Build in support for games with multiple players?
+	var player_effect_trees =  RunData.get_player_effect('trees', 0); # First player effects.
+	
+	var min_nb = (1 + player_effect_trees)
+	var max_nb = (2 + player_effect_trees)
 	for i in possible_chances:
 		var min_total_chance:float = min_nb * 0.33
 		var max_total_chance:float = max_nb * 0.33
